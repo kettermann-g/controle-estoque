@@ -6,3 +6,14 @@ const navLinks = document.querySelectorAll('.nav-link').forEach(link => {
     link.firstElementChild.classList.remove('link-enabled');
   }
 })
+
+const container = document.querySelector("#ul-header");
+const itens = document.querySelectorAll(".div-condicional");
+
+console.log(itens.length);
+
+if(itens.length === 1) {
+  container.style.justifyContent = "flex-end";
+} else {
+  container.style.justifyContent = "space-between";
+}

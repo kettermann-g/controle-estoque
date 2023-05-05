@@ -43,6 +43,7 @@
     <ul id="ul-header">
       <!-- SE OBJETO USER NÃO ESTIVER SETADO: -->
       <?php if (!isset($user->username)): ?>
+      <div class="div-condicional" id="div-nao-logado">
         <a href="<?= $BASE_URL ?>/login.php">
           <li id="login" class="link-enabled">
             <i class="fa-solid fa-right-to-bracket"></i>
@@ -64,10 +65,11 @@
           <i class="dead-link fa-solid fa-file"></i>
           <span>Estoque</span>
         </li>
+      </div>
 
       <!-- SE ESTIVER -->
       <?php else: ?>
-        <div id="div1">
+        <div class="div-condicional" id="div1">
           <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
             <span>Sair</span>
           </li>
@@ -79,7 +81,7 @@
           </li>
         </div>
 
-        <div id="div2">
+        <div class="div-condicional" id="div2">
           <!-- LINK INDEX/HOME -->
           <a class="nav-link" href="<?= $BASE_URL ?>/index.php">
             <li id="home" class="nav-item link-enabled">
@@ -91,7 +93,7 @@
       <!-- LINK CADASTRO NEW -->
       <a class="nav-link" href="<?= $BASE_URL ?>/movimentacao.php">
         <li id="cadastro" class="nav-item link-enabled">
-          <i id="cor1" class="fa-solid fa-arrow-up-arrow-down"></i>
+          <i id="cor1" class="fa-solid fa-code-compare"></i>
           <span>Movimentações</span>
         </li>
       </a>

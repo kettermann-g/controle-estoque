@@ -14,7 +14,12 @@ header {
 .navbar ul {
   padding: 20px 0px;
   display: flex;
-  justify-content: space-between;
+
+}
+
+#div-nao-logado {
+  display: flex;
+
 }
 
 #div1, #div2 {
