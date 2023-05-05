@@ -13,7 +13,6 @@
     </main>
 
   <?php include_once("templates/footer.php"); ?>
-  <script src="https://kit.fontawesome.com/5fda86d671.js" crossorigin="anonymous"></script>
-  <script src="<?= $BASE_URL ?>/js/index.js"></script>
+  
 </body>
 </html>

@@ -24,7 +24,7 @@
 
   
 
-  if (in_array($pagina, ["/projeto-integrador-IENH/", "/projeto-integrador-IENH/index.php", "/projeto-integrador-IENH/index"])) {
+  if (in_array($pagina, ["/controle-estoque/", "/controle-estoque/index.php", "/controle-estoque/index"])) {
     $tagHome = "link-disabled";
     $iHome = "i-link-disabled";
     $checkHome = true;
@@ -34,7 +34,7 @@
     $checkHome = false;
   }
   
-  if (in_array($pagina, ["/projeto-integrador-IENH/cadastroNew.php", "/projeto-integrador-IENH/cadastroNew"])) {
+  if (in_array($pagina, ["/controle-estoque/cadastroNew.php", "/controle-estoque/cadastroNew"])) {
     $tagCadastro = "link-disabled";
     $iCadastro = "i-link-disabled";
     $checkCadastro = true;
@@ -59,9 +59,17 @@
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/style.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/responsive.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/navbarStyle.css">
-    <?php if ($pagina == "/projeto-integrador-IENH/cadastroNew.php" || $pagina == "/projeto-integrador-IENH/cadastroNew" ): ?>
+    <?php if ($pagina == "/controle-estoque/cadastroNew.php" || $pagina == "/controle-estoque/cadastroNew" ): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
+
+    <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
+      <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
+    <?php endif; ?> -->
+
+    <script defer src="https://kit.fontawesome.com/5fda86d671.js" crossorigin="anonymous"></script>
+    
+    <script defer src="<?= $BASE_URL ?>/js/pagina.js"></script>
 
     
 
@@ -122,7 +130,7 @@
       <!-- LINK INDEX/HOME -->
       <a href="<?= $BASE_URL ?>/index.php">
         <li id="home" class="<?= $tagHome ?>">
-          <i <?php if (!$checkHome) {echo 'id="cor0"';}?> class="<?= $iHome ?> fa-solid fa-house"></i>
+          <i id="cor0" class="fa-solid fa-house"></i>
           <span>Home</span>
         </li>
       </a>
@@ -130,23 +138,23 @@
       <!-- LINK CADASTRO NEW -->
       <a href="<?= $BASE_URL ?>/cadastroNew.php">
         <li id="cadastro" class="<?= $tagCadastro ?>">
-          <i <?php if (!$checkCadastro) {echo 'id="cor1"';}?> class="<?= $iCadastro ?> fa-solid fa-arrow-up-from-bracket"></i>
+          <i id="cor1" class="fa-solid fa-arrow-up-from-bracket"></i>
           <span>Cadastro</span>
         </li>
       </a>
 
       <li id="entrada" class="<?= $link['li'] ?>">
-        <i <?php if (true) {echo 'id="cor2"';}?> class="<?= $link['li'] ?> fa-solid fa-plus"></i>
+        <i id="cor2" class="fa-solid fa-plus"></i>
         <span>Entrada</span>
       </li>
 
       <li id="saida" class="<?= $link['li'] ?>">
-        <i <?php if (true) {echo 'id="cor3"';}?> class="<?= $link['li'] ?> fa-solid fa-minus"></i>
+        <i id="cor3" class="fa-solid fa-minus"></i>
         <span>Saída</span>
       </li>
 
       <li id="relatorio" class="<?= $link['li'] ?>">
-        <i <?php if (true) {echo 'id="cor4"';}?> class="<?= $link['li'] ?> fa-solid fa-file"></i>
+        <i id="cor4" class="fa-solid fa-file"></i>
         <span>Relatório</span>
       </li>
 

@@ -40,7 +40,7 @@ font-size: 20px;
   font-size: 20px;
 }
 
-.link-enabled:hover, .link-enabled a:hover {
+.link-enabled:hover, a:hover .link-enabled  {
   color: #000000;
 }
 
