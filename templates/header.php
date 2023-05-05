@@ -64,7 +64,7 @@
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
     <?php endif; ?> -->
 
-    <script defer src="https://kit.fontawesome.com/5fda86d671.js" crossorigin="anonymous"></script>
+    
     
     <script defer src="<?= $BASE_URL ?>/js/pagina.js"></script>
 
@@ -74,11 +74,8 @@
 </head>
 <body>
 <header>
-  <div class="div-user">
-    
-  </div>
   <nav class="navbar">
-    <ul>
+    <ul id="ul-fudida">
       <!-- SE OBJETO USER NÃO ESTIVER SETADO: -->
       <?php if (!isset($user->username)): ?>
         <a href="<?= $BASE_URL ?>/login.php">
@@ -105,22 +102,26 @@
 
       <!-- SE ESTIVER -->
       <?php else: ?>
-        <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
-          <span>Sair</span>
-        </li>
+        <div id="div1">
+          <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
+            <span>Sair</span>
+          </li>
 
-        <li id="username" class="link-enabled">
-          <i id ="cor5" class="fa-solid fa-user"></i>
-          <span><?= $user->username ?></span>
-        </li>
 
-      <!-- LINK INDEX/HOME -->
-      <a href="<?= $BASE_URL ?>/index.php">
-        <li id="home" class="<?= $tagHome ?>">
-          <i id="cor0" class="fa-solid fa-house"></i>
-          <span>Home</span>
-        </li>
-      </a>
+          <li id="username" class="link-enabled">
+            <i id ="cor5" class="fa-solid fa-user"></i>
+            <span><?= $user->username ?></span>
+          </li>
+        </div>
+
+        <div id="div2">
+          <!-- LINK INDEX/HOME -->
+          <a href="<?= $BASE_URL ?>/index.php">
+            <li id="home" class="<?= $tagHome ?>">
+              <i id="cor0" class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </li>
+          </a>
 
       <!-- LINK CADASTRO NEW -->
       <a href="<?= $BASE_URL ?>/movimentacao.php">
@@ -135,6 +136,11 @@
         <span>Relatório</span>
       </li>
 
+          <li id="relatorio" class="<?= $link['li'] ?>">
+            <i id="cor4" class="fa-solid fa-file"></i>
+            <span>Relatório</span>
+          </li>
+        </div>
       <!-- FIM IF -->
       <?php endif; ?>
         

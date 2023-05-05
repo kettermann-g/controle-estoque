@@ -1,20 +1,30 @@
 header {
   display: flex;
-  justify-content: space-between;
   max-width: 100vw;
   padding: 0px 10px;
   margin: 0 auto;
   height: 80px;
+  justify-content: space-between;
 }
 
 .navbar {
-  display: flex;
-  align-items: center;
+  padding-top: 10px;
+  width: 100vw;
+  
 }
+
 
 .navbar ul {
   display: flex;
+  justify-content: space-between;
 }
+
+#div1, #div2 {
+  position: relative;
+  display: flex;
+}
+
+
 
 .link-disabled, .link-disabled a{
 color: #000000!important;
