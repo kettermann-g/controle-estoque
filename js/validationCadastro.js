@@ -1,11 +1,9 @@
 const submitButton = document.getElementById("submit-button")
 const referencia = document.getElementById("referencia")
-const produto = document.getElementById("produto")
-const vU = document.getElementById("valor_unitario")
-const desc = document.getElementById("descricao")
+const origem= document.getElementById("origem")
 
 function validation() {
-    if (referencia.value == "" || produto.value == "" || vU.value == "" || desc.value == "") {
+    if (referencia.value == "" || origem.value == "") {
         window.alert("Informe o(s) campo(s) corretamente.")
     }
     else {
@@ -16,6 +14,7 @@ function validation() {
 submitButton.addEventListener("click", () => {
     validation()
 }
+
 )
 
 submitButton.onmouseover = () => {
