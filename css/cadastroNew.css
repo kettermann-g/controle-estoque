@@ -52,6 +52,10 @@ form {
     gap: 20px;
 }
 
+.radio-container {
+    
+}
+
 #submit-button {
     width: 120px;
     height: 40px;
