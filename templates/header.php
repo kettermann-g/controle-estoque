@@ -100,7 +100,6 @@
         <li id="estoque" class="nav-item link-enabled">
           <i id="cor4" class="fa-solid fa-file"></i>
           <span>Estoque</span>
-          <span>Estoque</span>
         </li>
       </a>
       </div>
