@@ -1,0 +1,43 @@
+@media (max-width: 900px) {
+    header {
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar ul li {
+        font-size: 15px;
+        padding: 15px;
+    }
+
+    .container {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .div-welcome {
+        width: 400px;
+    }
+
+    .art-welcome {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        display: flex;
+        justify-content: center;
+    }
+
+    span {
+        display: none;
+    }
+
+    .navbar ul li {
+        font-size: 22px;
+        margin: 10px;
+    }
+}

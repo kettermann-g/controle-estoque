@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;  
+    font-family: "Rubik";
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100vw;
+    padding: 0px 15px;
+    margin: 0 auto;
+    height: 80px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    height: calc(100vh - 80px);
+    padding: 0px 15px;
+    margin: 0 auto;
+}
+
+form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.input {
+    background-color: #f3eeee;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    padding: 10px;
+    transition: 0.4s;
+}
+
+.form-inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#submit-button {
+    width: 120px;
+    height: 40px;
+    background: #38B6FF;
+    border: 1px solid #38B6FF;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    border-color: #000000;
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.div-welcome {
+    width: 550px;
+    font-size: 18px;
+}
+
+footer {
+    color: white;
+    background-color: #1f1d1d;
+    margin: 0 auto;
+    height: 500px;
+    max-width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 30px;
+}
+
+.div-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-redes {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-footer {
+    width: 150px;
+}
