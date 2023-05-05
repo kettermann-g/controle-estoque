@@ -34,7 +34,7 @@
     $checkHome = false;
   }
   
-  if (in_array($pagina, ["/controle-estoque/cadastroNew.php", "/controle-estoque/cadastroNew"])) {
+  if (in_array($pagina, ["/controle-estoque/movimentacao.php", "/controle-estoque/cadastroNew"])) {
     $tagCadastro = "link-disabled";
     $iCadastro = "i-link-disabled";
     $checkCadastro = true;
@@ -43,9 +43,6 @@
     $iCadastro = "i-link-enabled";
     $checkCadastro = false;
   }
-
-
-  
 
 ?>
 
@@ -59,7 +56,7 @@
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/style.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/responsive.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/navbarStyle.css">
-    <?php if ($pagina == "/controle-estoque/cadastroNew.php" || $pagina == "/controle-estoque/cadastroNew" ): ?>
+    <?php if ($pagina == "/controle-estoque/movimentacao.php" || $pagina == "/controle-estoque/movimentacao" ): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
 
@@ -95,23 +92,14 @@
 
         <li id="cadastro" class="dead-link">
           <i class="dead-link fa-solid fa-arrow-up-from-bracket"></i>
-          <span>Cadastro</span>
-        </li>
-
-        <li id="entrada" class="dead-link">
-          <i class="dead-link fa-solid fa-plus"></i>
-          <span>Entrada</span>
-        </li>
-
-        <li id="saída" class="dead-link">
-          <i class="dead-link fa-solid fa-minus"></i>
-          <span>Saída</span>
+          <span>Movimentações</span>
         </li>
 
         <li id="relatório" class="dead-link">
           <i class="dead-link fa-solid fa-file"></i>
           <span>Relatório</span>
         </li>
+
       <!-- SE ESTIVER -->
       <?php else: ?>
         <div id="div1">
@@ -135,23 +123,18 @@
             </li>
           </a>
 
-          <!-- LINK CADASTRO NEW -->
-          <a href="<?= $BASE_URL ?>/cadastroNew.php">
-            <li id="cadastro" class="<?= $tagCadastro ?>">
-              <i id="cor1" class="fa-solid fa-book-circle-arrow-up"></i>
-              <span>Cadastro</span>
-            </li>
-          </a>
+      <!-- LINK CADASTRO NEW -->
+      <a href="<?= $BASE_URL ?>/movimentacao.php">
+        <li id="cadastro" class="<?= $tagCadastro ?>">
+          <i id="cor1" class="fa-solid fa-arrow-up-arrow-down"></i>
+          <span>Movimentações</span>
+        </li>
+      </a>
 
-          <li id="entrada" class="<?= $link['li'] ?>">
-            <i id="cor2" class="fa-solid fa-plus"></i>
-            <span>Entrada</span>
-          </li>
-
-          <li id="saida" class="<?= $link['li'] ?>">
-            <i id="cor3" class="fa-solid fa-minus"></i>
-            <span>Saída</span>
-          </li>
+      <li id="relatorio" class="<?= $link['li'] ?>">
+        <i id="cor4" class="fa-solid fa-file"></i>
+        <span>Relatório</span>
+      </li>
 
           <li id="relatorio" class="<?= $link['li'] ?>">
             <i id="cor4" class="fa-solid fa-file"></i>

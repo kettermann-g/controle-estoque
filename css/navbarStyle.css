@@ -1,7 +1,7 @@
 header {
   display: flex;
   max-width: 100vw;
-  padding: 0px 15px;
+  padding: 0px 10px;
   margin: 0 auto;
   height: 80px;
   justify-content: space-between;
@@ -67,8 +67,6 @@ font-size: 20px;
 .link-enabled-danger:hover {
   color: rgb(196, 8, 8)!important;
 }
-
-
 
 .i-link-enabled {
   color: #38B6FF;
