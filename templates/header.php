@@ -54,8 +54,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/style.css">
-    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/responsive.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/navbarStyle.css">
+    
     <?php if ($pagina == "/controle-estoque/movimentacao.php" || $pagina == "/controle-estoque/movimentacao" ): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
@@ -63,12 +63,8 @@
     <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
     <?php endif; ?> -->
-
-    
     
     <script defer src="<?= $BASE_URL ?>/js/pagina.js"></script>
-
-    
 
     <title><?= $titulo ?></title>
 </head>
@@ -91,13 +87,13 @@
         </li>
 
         <li id="cadastro" class="dead-link">
-          <i class="dead-link fa-solid fa-arrow-up-from-bracket"></i>
+          <i class="dead-link fa-solid fa-code-compare"></i>
           <span>Movimentações</span>
         </li>
 
         <li id="relatório" class="dead-link">
           <i class="dead-link fa-solid fa-file"></i>
-          <span>Relatório</span>
+          <span>Estoque</span>
         </li>
 
       <!-- SE ESTIVER -->
@@ -106,7 +102,6 @@
           <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
             <span>Sair</span>
           </li>
-
 
           <li id="username" class="link-enabled">
             <i id ="cor5" class="fa-solid fa-user"></i>
@@ -126,14 +121,14 @@
       <!-- LINK CADASTRO NEW -->
       <a href="<?= $BASE_URL ?>/movimentacao.php">
         <li id="cadastro" class="<?= $tagCadastro ?>">
-          <i id="cor1" class="fa-solid fa-arrow-up-arrow-down"></i>
+          <i id="cor1" class="fa-solid fa-code-compare"></i>
           <span>Movimentações</span>
         </li>
       </a>
 
         <li id="relatorio" class="<?= $link['li'] ?>">
           <i id="cor4" class="fa-solid fa-file"></i>
-          <span>Relatório</span>
+          <span>Estoque</span>
         </li>
       </div>
       <!-- FIM IF -->

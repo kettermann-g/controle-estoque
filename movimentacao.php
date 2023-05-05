@@ -15,14 +15,14 @@
                 <input class="input" id="origem" name="origem" required="required" type="text" placeholder="Origem ou destino"/>
 
                 <div class="radio-container">
-                    <input type="radio" id="huey" name="movi" value="huey"
+                    <input type="radio" id="entrada-radio" name="movi" value="entrada"
                             checked>
-                    <label for="huey">Entrada</label>
+                    <label for="entrada">Entrada</label>
                 </div>
 
                 <div class="radio-container">
-                    <input type="radio" id="saida" name="movi" value="dewey">
-                    <label for="dewey">Saída</label>
+                    <input type="radio" id="saida-radio" name="movi" value="saida">
+                    <label for="saida">Saída</label>
                 </div>
 
                 <input type="submit" id="submit-button"></input>
