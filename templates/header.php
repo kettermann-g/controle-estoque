@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/navbarStyle.css">
     
     <?php if ($pagina == "/controle-estoque/movimentacao.php" || $pagina == "/controle-estoque/movimentacao" ): ?>
-      <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
 
     <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
