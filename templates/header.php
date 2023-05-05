@@ -71,9 +71,9 @@
       <?php else: ?>
         <div class="div-condicional" id="div1">
           <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
+            <i id="cor2" class="fa-solid fa-right-to-bracket"></i>
             <span>Sair</span>
           </li>
-
 
           <li id="username" class="nav-item link-enabled">
             <i id ="cor5" class="fa-solid fa-user"></i>

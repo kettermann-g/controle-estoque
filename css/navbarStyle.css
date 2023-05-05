@@ -58,16 +58,16 @@ font-size: 20px;
 }
 
 .link-enabled-danger{
-  color: #38B6FF;
+  color: #e70e0e;
   padding: 0px 8px;
   text-transform: uppercase;
-  transition: 0.2s;
+  transition: 0.4s;
   cursor: pointer;
   font-size: 20px;
 }
 
 .link-enabled-danger:hover {
-  color: rgb(196, 8, 8)!important;
+  transform: translateY(5px);
 }
 
 .i-link-enabled {
