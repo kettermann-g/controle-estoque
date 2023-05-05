@@ -13,9 +13,7 @@ function validation() {
 
 submitButton.addEventListener("click", () => {
     validation()
-}
-
-)
+})
 
 submitButton.onmouseover = () => {
     submitButton.style.width = "100%";

@@ -131,16 +131,11 @@
         </li>
       </a>
 
-      <li id="relatorio" class="<?= $link['li'] ?>">
-        <i id="cor4" class="fa-solid fa-file"></i>
-        <span>Relatório</span>
-      </li>
-
-          <li id="relatorio" class="<?= $link['li'] ?>">
-            <i id="cor4" class="fa-solid fa-file"></i>
-            <span>Relatório</span>
-          </li>
-        </div>
+        <li id="relatorio" class="<?= $link['li'] ?>">
+          <i id="cor4" class="fa-solid fa-file"></i>
+          <span>Relatório</span>
+        </li>
+      </div>
       <!-- FIM IF -->
       <?php endif; ?>
         
