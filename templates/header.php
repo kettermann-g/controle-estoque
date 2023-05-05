@@ -13,37 +13,6 @@
 
   }
 
-  $link = [];
-  if (isset($user)) {
-    $link['li'] = 'link-enabled';
-    $link['i'] = 'i-link-enabled';
-  } else {
-    $link['li'] = 'link-disabled';
-    $link['i'] = 'i-link-disabled';
-  }
-
-  
-
-  if (in_array($pagina, ["/controle-estoque/", "/controle-estoque/index.php", "/controle-estoque/index"])) {
-    $tagHome = "link-disabled";
-    $iHome = "i-link-disabled";
-    $checkHome = true;
-  } else {
-    $tagHome = "link-enabled";
-    $iHome = "i-link-enabled";
-    $checkHome = false;
-  }
-  
-  if (in_array($pagina, ["/controle-estoque/movimentacao.php", "/controle-estoque/cadastroNew"])) {
-    $tagCadastro = "link-disabled";
-    $iCadastro = "i-link-disabled";
-    $checkCadastro = true;
-  } else {
-    $tagCadastro = "link-enabled";
-    $iCadastro = "i-link-enabled";
-    $checkCadastro = false;
-  }
-
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +44,7 @@
 <body>
 <header>
   <nav class="navbar">
-    <ul id="ul-fudida">
+    <ul id="ul-header">
       <!-- SE OBJETO USER NÃO ESTIVER SETADO: -->
       <?php if (!isset($user->username)): ?>
         <a href="<?= $BASE_URL ?>/login.php">
@@ -108,7 +77,7 @@
           </li>
 
 
-          <li id="username" class="link-enabled">
+          <li id="username" class="nav-item link-enabled">
             <i id ="cor5" class="fa-solid fa-user"></i>
             <span><?= $user->username ?></span>
           </li>
@@ -116,25 +85,27 @@
 
         <div id="div2">
           <!-- LINK INDEX/HOME -->
-          <a href="<?= $BASE_URL ?>/index.php">
-            <li id="home" class="<?= $tagHome ?>">
+          <a class="nav-link" href="<?= $BASE_URL ?>/index.php">
+            <li id="home" class="nav-item link-enabled">
               <i id="cor0" class="fa-solid fa-house"></i>
               <span>Home</span>
             </li>
           </a>
 
       <!-- LINK CADASTRO NEW -->
-      <a href="<?= $BASE_URL ?>/movimentacao.php">
-        <li id="cadastro" class="<?= $tagCadastro ?>">
+      <a class="nav-link" href="<?= $BASE_URL ?>/movimentacao.php">
+        <li id="cadastro" class="nav-item link-enabled">
           <i id="cor1" class="fa-solid fa-arrow-up-arrow-down"></i>
           <span>Movimentações</span>
         </li>
       </a>
-
-        <li id="relatorio" class="<?= $link['li'] ?>">
+      
+      <a class="nav-link" href="<?= $BASE_URL ?>/estoque.php">
+        <li id="estoque" class="nav-item link-enabled">
           <i id="cor4" class="fa-solid fa-file"></i>
-          <span>Relatório</span>
+          <span>Estoque</span>
         </li>
+      </a>
       </div>
       <!-- FIM IF -->
       <?php endif; ?>
