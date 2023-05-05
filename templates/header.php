@@ -23,8 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/style.css">
-    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/responsive.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/navbarStyle.css">
+    
     <?php if ($pagina == "/controle-estoque/movimentacao.php" || $pagina == "/controle-estoque/movimentacao" ): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
@@ -32,12 +32,8 @@
     <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
     <?php endif; ?> -->
-
-    
     
     <script defer src="<?= $BASE_URL ?>/js/pagina.js"></script>
-
-    
 
     <title><?= $titulo ?></title>
 </head>
@@ -60,13 +56,13 @@
         </li>
 
         <li id="cadastro" class="dead-link">
-          <i class="dead-link fa-solid fa-arrow-up-from-bracket"></i>
+          <i class="dead-link fa-solid fa-code-compare"></i>
           <span>Movimentações</span>
         </li>
 
         <li id="relatório" class="dead-link">
           <i class="dead-link fa-solid fa-file"></i>
-          <span>Relatório</span>
+          <span>Estoque</span>
         </li>
 
       <!-- SE ESTIVER -->
@@ -103,6 +99,7 @@
       <a class="nav-link" href="<?= $BASE_URL ?>/estoque.php">
         <li id="estoque" class="nav-item link-enabled">
           <i id="cor4" class="fa-solid fa-file"></i>
+          <span>Estoque</span>
           <span>Estoque</span>
         </li>
       </a>
