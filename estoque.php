@@ -1,30 +1,13 @@
 <?php
   $titulo = "Estoque";
   include_once("templates/header.php");
-  include_once("php/conexao.php");
-  include_once("php/url.php");
+  include_once("dao/ProdutoDAO.php");
+
+  $produtoDAO = new ProdutoDAO($conexao);
   
-  $query = $conexao->prepare("SELECT * FROM estoque");
-  $query->execute();
-  $res = $query->fetchAll();
+  $produtos = $produtoDAO->findAll($user->id);
 
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<?= $BASE_URL ?>../js/tableFilter.js"></script>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/estoque.css">
-
-    <title>Estoque</title>
-</head>
-
-<body>
   <main class="container">
 
 <div class="content">
@@ -48,12 +31,12 @@
                 </tr>            
             </thead>
             <tbody>
-                <?php foreach ($res as $dado): ?>
+                <?php foreach ($produtos as $dado): ?>
                     <tr>
                         <td><?= $dado['idProduto'] ?></td> 
                         <td><?= $dado['marca'] ?></td> 
                         <td><?= $dado['descricao'] ?></td>
-                        <td><?= $dado['id_medida'] ?></td>
+                        <td><?= $dado['medida'] ?></td>
                         <td><?= $dado['quantidade'] ?></td>
                     </tr>
                 <?php endforeach; ?>

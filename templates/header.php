@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/cadastroNew.css">
     <?php endif; ?>
 
+    <?php if ($pagina == "/controle-estoque/estoque.php" || $pagina == "/controle-estoque/estoque" ): ?>
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/estoque.css">
+    <?php endif; ?>
+
     <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
     <?php endif; ?> -->
