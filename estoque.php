@@ -19,7 +19,7 @@
                     <th>ID Produto</th>
                     <th>Marca</th>
                     <th>Descrição</th>
-                    <th>ID Medida</th>
+                    <th>Medida</th>
                     <th>Quantidade</th>
                 </tr>
                 <tr>
