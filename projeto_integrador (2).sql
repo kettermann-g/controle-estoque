@@ -109,7 +109,8 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
 --
 
 INSERT INTO `movimentacao` (`idMovimento`, `estoque_idProduto`, `tipoMovimento`, `quantidade`, `dataMovimento`, `id_usuario`) VALUES
-(1, 1, 'Entrada', 5, '2023-05-05', 1);
+(1, 1, 'Entrada', 7, '2023-05-05', 1),
+(2, 1, 'Saída', 2, '2023-05-05', 1);
 
 -- --------------------------------------------------------
 

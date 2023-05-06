@@ -8,6 +8,7 @@
   $produtos = $produtoDAO->findAll($user->id);
 
 ?>
+
   <main class="container">
 
 <div class="content">
