@@ -47,7 +47,7 @@
       <?php if (!isset($user->username)): ?>
       <div class="div-condicional" id="div-nao-logado">
         <a href="<?= $BASE_URL ?>/login.php">
-          <li id="login" class="link-enabled">
+          <li id="login" class="link-disabled">
             <i class="fa-solid fa-right-to-bracket"></i>
             <span>Login</span>
           </li>
