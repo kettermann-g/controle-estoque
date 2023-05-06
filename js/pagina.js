@@ -9,6 +9,9 @@ if(page != "/controle-estoque/") {
       link.firstElementChild.classList.add('link-disabled');
     }
   })
+} else {
+  home.classList.add('link-disabled');
+  home.classList.remove('link-enabled');
 }
 
 const container = document.querySelector("#ul-header");
