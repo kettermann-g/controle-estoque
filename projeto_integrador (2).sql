@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`idMovimento`),
   KEY `fk_Compra_Estoque_idx` (`estoque_idProduto`),
-  KEY `fk_idUser` (`idUser`)
+  KEY `fk_id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
