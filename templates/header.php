@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/estoque.css">
     <?php endif; ?>
 
+    <?php if ($pagina == "/controle-estoque/fluxoEstoque.php" || $pagina == "/controle-estoque/fluxoEstoque" ): ?>
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/estoque.css">
+    <?php endif; ?>
+
     <!-- <?php if ($pagina == "/controle-estoque/estrada" || $pagina == "/controle-estoque/entrada.php"): ?>
       <link rel="stylesheet" href="<?= $BASE_URL ?>/css/entrada.css">
     <?php endif; ?> -->
@@ -70,6 +74,11 @@
         <li id="relatório" class="dead-link">
           <i class="dead-link fa-solid fa-file"></i>
           <span>Estoque</span>
+        </li>
+
+        <li id="fluxo" class="dead-link">
+          <i class="dead-link fa-solid fa-file"></i>
+          <span>Fluxo de Estoque</span>
         </li>
       </div>
 
@@ -108,6 +117,13 @@
         <li id="estoque" class="nav-item link-enabled">
           <i id="cor4" class="fa-solid fa-file"></i>
           <span>Estoque</span>
+        </li>
+      </a>
+
+      <a class="nav-link" href="<?= $BASE_URL ?>/fluxoEstoque.php">
+        <li id="fluxo" class="nav-item link-enabled">
+          <i id="cor4" class="fa-solid fa-file"></i>
+          <span>Fluxo de Estoque</span>
         </li>
       </a>
       </div>

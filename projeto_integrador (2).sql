@@ -104,6 +104,13 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
   KEY `fk_id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Inserindo dados na tabela `movimentacao`
+--
+
+INSERT INTO `movimentacao` (`idMovimento`, `estoque_idProduto`, `tipoMovimento`, `quantidade`, `dataMovimento`, `id_usuario`) VALUES
+(1, 1, 'Entrada', 5, '2023-05-05', 1);
+
 -- --------------------------------------------------------
 
 --
