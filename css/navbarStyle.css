@@ -11,10 +11,11 @@ header {
   width: 1440px;
 }
 
-.navbar ul {
+#ul-header {
   padding: 20px 0px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #div-nao-logado {

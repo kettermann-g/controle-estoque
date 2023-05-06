@@ -24,7 +24,4 @@ if(itens.length === 1) {
   container.style.justifyContent = "flex-end";
   login.classList.remove("link-disabled");
   login.classList.add("link-enabled");
-} else {
-  container.style.justifyContent = "space-between";
-  
 }
