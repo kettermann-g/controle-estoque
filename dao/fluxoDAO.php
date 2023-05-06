@@ -2,7 +2,7 @@
 
   include_once("classes.php");
 
-  class FluxoDAO implements FluxoDAOInterface {
+  class ProdutoDAO implements ProdutoDAOInterface {
     private $conn;
 
     public function __construct(PDO $conn) {
@@ -18,8 +18,7 @@
     }
 
     public function findAll($userId) {
-      $stmt = $this->conn->prepare("SELECT idMovimento, estoque_idProduto, tipoMovimento,  quantidade, dataMovimento, id_usuario FROM movimentacao
-        INNER JOIN medidas ON estoque.id_medida = medidas.id_medida
+      $stmt = $this->conn->prepare("SELECT idMovimento, estoque_idProduto, tipoMovimento, quantidade, DATE_FORMAT(dataMovimento,'%d/%m/%Y') AS dataFormatada, id_usuario  FROM movimentacao
           WHERE id_usuario = :id_usuario");
 
       $stmt->bindParam(":id_usuario", $userId);

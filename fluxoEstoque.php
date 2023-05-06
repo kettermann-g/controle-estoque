@@ -1,26 +1,27 @@
 <?php
   $titulo = "Fluxo de Estoque";
   include_once("templates/header.php");
-  include_once("dao/FluxoDAO.php");
+  include_once("dao/fluxoDAO.php");
 
-  $fluxoDAO = new FluxoDAO($conexao);
+  $produtoDAO = new ProdutoDAO($conexao);
   
-  $produtos = $fluxoDAO->findAll($user->id);
+  $produtos = $produtoDAO->findAll($user->id);
 
 ?>
   <main class="container">
 
 <div class="content">
-    <H1>Fluxo de Estoque</H1>
+    <H1>FLUXO DE ESTOQUE</H1>
     <br>
         <table id="tabela">
             <thead>
                 <tr>
+                    <th>ID Movimento</th>
                     <th>ID Produto</th>
-                    <th>Marca</th>
-                    <th>Descrição</th>
-                    <th>Medida</th>
+                    <th>Tipo Movimento</th>
                     <th>Quantidade</th>
+                    <th>Data</th>
+                    <th>ID Usuario</th>
                 </tr>
                 <tr>
                     <th><input type="text" id="txtColuna1"/></th>
@@ -28,16 +29,18 @@
                     <th><input type="text" id="txtColuna3"/></th>
                     <th><input type="text" id="txtColuna4"/></th>
                     <th><input type="text" id="txtColuna5"/></th>
+                    <th><input type="text" id="txtColuna6"/></th>
                 </tr>            
             </thead>
             <tbody>
                 <?php foreach ($produtos as $dado): ?>
                     <tr>
-                        <td><?= $dado['idProduto'] ?></td> 
-                        <td><?= $dado['marca'] ?></td> 
-                        <td><?= $dado['descricao'] ?></td>
-                        <td><?= $dado['medida'] ?></td>
+                        <td><?= $dado['idMovimento'] ?></td> 
+                        <td><?= $dado['estoque_idProduto'] ?></td> 
+                        <td><?= $dado['tipoMovimento'] ?></td>
                         <td><?= $dado['quantidade'] ?></td>
+                        <td><?= $dado['dataFormatada'] ?></td>
+                        <td><?= $dado['id_usuario'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
