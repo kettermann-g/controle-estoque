@@ -31,7 +31,7 @@
         <button class="button-left" onclick="location.href='<?= $BASE_URL ?>/cadastroUser.php';" >Cadastre-se</button>
       </div>
       <div class="right">
-        <form action="php/processoLogin.php" method="POST" id="form-login">
+        <form action="<?= $BASE_URL ?>/php/processoLogin.php" method="POST" id="form-login">
           <div class="input-field">
             <input id="email" name="email" type="email" placeholder="Email">
           </div>

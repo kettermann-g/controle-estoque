@@ -1,5 +1,6 @@
 const page = window.location.pathname;
 const home = document.getElementById("home");
+const login = document.getElementById("login");
 console.log(page);
 if(page != "/controle-estoque/") {
   var navLinks = document.querySelectorAll('.nav-link').forEach(link => {
@@ -21,6 +22,9 @@ console.log(itens.length);
 
 if(itens.length === 1) {
   container.style.justifyContent = "flex-end";
+  login.classList.remove("link-disabled");
+  login.classList.add("link-enabled");
 } else {
   container.style.justifyContent = "space-between";
+  
 }

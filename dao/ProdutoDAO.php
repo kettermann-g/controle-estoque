@@ -34,4 +34,22 @@
         return false;
       }
     }
+
+    public function findFluxo($userId) {
+      $stmt = $this->conn->prepare("SELECT idMovimento, movimentacao.estoque_idProduto as IDprod, estoque.marca as marca, estoque.descricao as descricao, tipoMovimento, movimentacao.quantidade, DATE_FORMAT(dataMovimento,'%d/%m/%Y') AS dataFormatada, movimentacao.id_usuario FROM movimentacao
+      inner join estoque on estoque.idProduto = movimentacao.estoque_idProduto
+                WHERE movimentacao.id_usuario = :id");
+
+      $stmt->bindParam(":id", $userId);
+
+      $stmt->execute();
+
+      $listaProdutos = $stmt->fetchAll();
+
+      if ($listaProdutos) {
+        return $listaProdutos;
+      } else {
+        return false;
+      }
+    }
   }

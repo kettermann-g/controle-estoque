@@ -36,4 +36,5 @@ interface ProdutoDAOInterface {
   public function buildProduto($data);
   public function movimentar($tipoMOV);
   public function findAll($userId);
+  public function findFluxo($userId);
 }

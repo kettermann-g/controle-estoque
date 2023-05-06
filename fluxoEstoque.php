@@ -1,11 +1,11 @@
 <?php
   $titulo = "Fluxo de Estoque";
   include_once("templates/header.php");
-  include_once("dao/fluxoDAO.php");
+  include_once("dao/ProdutoDAO.php");
 
   $produtoDAO = new ProdutoDAO($conexao);
   
-  $produtos = $produtoDAO->findAll($user->id);
+  $produtos = $produtoDAO->findFluxo($user->id);
 
 ?>
   <main class="container">
@@ -18,6 +18,8 @@
                 <tr>
                     <th>ID Movimento</th>
                     <th>ID Produto</th>
+                    <th>Marca</th>
+                    <th>Descrição</th>
                     <th>Tipo Movimento</th>
                     <th>Quantidade</th>
                     <th>Data</th>
@@ -30,13 +32,16 @@
                     <th><input type="text" id="txtColuna4"/></th>
                     <th><input type="text" id="txtColuna5"/></th>
                     <th><input type="text" id="txtColuna6"/></th>
+                    <th><input type="text" id="txtColuna7"/></th>
                 </tr>            
             </thead>
             <tbody>
                 <?php foreach ($produtos as $dado): ?>
                     <tr>
                         <td><?= $dado['idMovimento'] ?></td> 
-                        <td><?= $dado['estoque_idProduto'] ?></td> 
+                        <td><?= $dado['IDprod'] ?></td> 
+                        <td><?= $dado['marca'] ?></td> 
+                        <td><?= $dado['descricao'] ?></td> 
                         <td><?= $dado['tipoMovimento'] ?></td>
                         <td><?= $dado['quantidade'] ?></td>
                         <td><?= $dado['dataFormatada'] ?></td>
