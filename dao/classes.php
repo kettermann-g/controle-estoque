@@ -35,5 +35,5 @@ class Produto {
 interface ProdutoDAOInterface {
   public function buildProduto($data);
   public function movimentar($tipoMOV);
-  public function findAll();
+  public function findAll($userId);
 }
