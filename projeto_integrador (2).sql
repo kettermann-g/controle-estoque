@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `projeto_integrador`
+-- Criando Banco de dados: `projeto_integrador`
 --
 CREATE DATABASE IF NOT EXISTS `projeto_integrador` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `projeto_integrador`;
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `estoque` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `estoque`
+-- Inserindo dados na tabela `estoque`
 --
 
 INSERT INTO `estoque` (`idProduto`, `id_usuario`, `marca`, `descricao`, `id_medida`, `quantidade`) VALUES
@@ -52,7 +52,16 @@ INSERT INTO `estoque` (`idProduto`, `id_usuario`, `marca`, `descricao`, `id_medi
 (3, 1, 'Samsung', 'Celular Galaxy 30 Branco', 1, 18),
 (4, 1, 'Razer', 'Headset Kaira PRO Verde', 1, 5),
 (5, 1, 'Razer', 'Headset Kraken Verde', 1, 6),
-(6, 1, 'Apple', 'Celular Phone 14 Preto', 1, 5);
+(6, 1, 'Apple', 'Celular Phone 14 Preto', 1, 5),
+(7, 1, 'Xiaomi', 'Relogio MiBand 4 Preto', 1, 6),
+(8, 1, 'Gigalan', 'Cabo de rede CAT6', 2, 60),
+(9, 1, 'Razer', 'Mouse DeathAdder V2 Mini Verde', 1, 6),
+(10, 1, 'Apple', 'Airbuds Branco', 1, 14),
+(11, 1, 'Fallen', 'Mouse Kobra Preto/Branco', 1, 8),
+(12, 1, 'Sony', 'Playstation 5 Pro Branco', 1, 2),
+(13, 1, 'HyperX', 'Headset Cloud Stinger Preto', 1, 7),
+(14, 1, 'Husky', 'Monitor 144hz Preto', 1, 6),
+(15, 2, 'Gigalan', 'Cabo de rede CAT5e', 2, 600);
 
 -- --------------------------------------------------------
 
@@ -69,11 +78,12 @@ CREATE TABLE IF NOT EXISTS `medidas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `medidas`
+-- Inserindo dados na tabela `medidas`
 --
 
 INSERT INTO `medidas` (`id_medida`, `nome_extenso`, `abreviatura`) VALUES
-(1, 'Unitário', 'un');
+(1, 'Unitário', 'un'),
+(2, 'Metros', 'mt');
 
 -- --------------------------------------------------------
 
@@ -88,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
   `tipoMovimento` varchar(8) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `dataMovimento` date DEFAULT NULL,
-  `idUser` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`idMovimento`),
   KEY `fk_Compra_Estoque_idx` (`estoque_idProduto`),
   KEY `fk_idUser` (`idUser`)
@@ -112,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Inserindo dados na tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `username`, `nome`, `email`, `senha`, `cnpj`) VALUES
@@ -120,6 +130,7 @@ INSERT INTO `usuario` (`id`, `username`, `nome`, `email`, `senha`, `cnpj`) VALUE
 (2, 'joaosilva', 'Joao Silva', 'joaosilva@gmail.com', '$2y$10$A4tpqS3xSol8b11M8Bi9XORm.waEuLQAEkxKuRA6A7YklGto42m.m', 'XX.XX.XXX/0001-XX'),
 (4, 'gustavoramos', 'Gustavo Ramos', 'gustavoramos@gmail.com', '$2y$10$E1Hclb6j6XGhif4228gCJuTcX3pmA489ldoEqxVNG42P5.uxDcYv.', 'XX.XX.XXX/0001-XX');
 
+-- --------------------------------------------------------
 --
 -- Restrições para despejos de tabelas
 --
