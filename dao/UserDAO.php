@@ -77,7 +77,7 @@
 
             if($stmt->rowCount() > 0) {
 
-              $data = $stmt->fetch();
+              $data = $stmt->fetch(PDO::FETCH_ASSOC);
               
               $user = $this->buildUser($data);
 
@@ -101,7 +101,7 @@
 
           if($stmt->rowCount() == 1) {
             
-            $data = $stmt->fetch();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
             $user = $this->buildUser($data);
 
             return $user;

@@ -10,7 +10,7 @@ if(page != "/controle-estoque/") {
       link.firstElementChild.classList.add('link-disabled');
     }
   })
-} else {
+} else if (page == "/controle-estoque/" && itens.length === 2) {
   home.classList.add('link-disabled');
   home.classList.remove('link-enabled');
 }

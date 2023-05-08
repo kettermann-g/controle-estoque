@@ -13,10 +13,6 @@
       
     }
 
-    public function movimentar($tipoMOV) {
-
-    }
-
     public function findAll($userId) {
       $stmt = $this->conn->prepare("SELECT idProduto, marca, descricao, medidas.nome_extenso as medida, quantidade FROM estoque
         INNER JOIN medidas ON estoque.id_medida = medidas.id_medida
@@ -26,7 +22,7 @@
 
       $stmt->execute();
 
-      $listaProdutos = $stmt->fetchAll();
+      $listaProdutos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       if ($listaProdutos) {
         return $listaProdutos;
@@ -44,7 +40,7 @@
 
       $stmt->execute();
 
-      $listaProdutos = $stmt->fetchAll();
+      $listaProdutos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       if ($listaProdutos) {
         return $listaProdutos;
