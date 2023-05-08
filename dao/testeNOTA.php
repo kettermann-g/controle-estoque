@@ -7,8 +7,8 @@
 
 
   $data = [
-    "id" => 1,
-    "numero" => "001285",
+    "idNota" => 1,
+    "numeroNota" => "001285",
     "id_usuario" => 1
   ];
 
@@ -27,4 +27,39 @@
   echo "<br>";
 
   
-  print_r($notaDAO->findProdutos(1)); echo "<br>";
+  print_r($notaDAO->findProdutos(1)); echo "<br>";echo "<br>";
+
+  echo "TESTE SALAVNDO OBJETOS EM ARRAY <br> <br>";
+
+  $allNotas = $notaDAO->findAllNotas(1);
+
+
+  echo "PRINT R ALL NOTAS <br>";
+  print_r($allNotas);
+
+  echo "<br> <br>";
+
+  $notas = [];
+
+  $c = 0;
+
+  foreach($allNotas as $nota) {
+    $notas[$c] = $notaDAO->buildNota($nota);
+    $c++;
+  }
+
+  echo "PRINT R NOTAS (OBJETOS EM ARRAY) <br>";
+  print_r($notas);
+
+  echo "<br> <br>";
+
+  foreach($notas as $nota) {
+    echo "ID NOTA: " . $nota->id . "<br>";
+    echo "ID USUARIO: " . $nota->id_usuario . "<br>";
+    echo "NUMERO NOTA: " . $nota->numero . "<br><br>";
+    echo "ITENS: <br>";
+    foreach($nota->produtos as $produtos) {
+      echo "| ID ITEM: " . $produtos['id_item'] . "| MARCA ITEM: ". $produtos['marca_item'] . "| DESCRIÇÃO ITEM: " .  $produtos['descricao_item'] . "| QUANTIDADE: " . $produtos['quantidade'] . "<br>";
+    }
+    echo "<br>";
+  }

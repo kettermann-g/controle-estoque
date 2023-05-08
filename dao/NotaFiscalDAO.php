@@ -42,8 +42,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   public function buildNota($data) {
     $nota = new NotaFiscal();
 
-    $nota->id = $data['id'];
-    $nota->numero = $data['numero'];
+    $nota->id = $data['idNota'];
+    $nota->numero = $data['numeroNota'];
     $nota->id_usuario = $data['id_usuario'];
     $nota->produtos = $this->findProdutos($nota->id);
 
