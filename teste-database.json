@@ -1,0 +1,9 @@
+{
+  "notafiscal_id" : 1,
+  "numero_nota" : "001285",
+  "usuario_id" : 1,
+  "produtos" : [
+    {"marca": "Samsung", "descricao": "Celular Galaxy 30 Branco", "quantidade": 30, "unidade": "Unitário"},
+    {"marca": "Razer", "descricao": "Headset Kraken Verde", "quantidade": 6, "unidade": "Unitário"}
+  ]
+}
