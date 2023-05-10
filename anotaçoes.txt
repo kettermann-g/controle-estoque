@@ -1,0 +1,18 @@
+tirar restriçao de fk id usuario da nota fiscal
+salvar username em string no movimento
+
+--
+nota nao precisa de id de usuario
+sem filtro de usuario pra estoque fluxo e lancar nota
+sem filtro de user pra porra nenhuma na real
+
+--
+
+modificar tabela de movimentações:
+    -movimento por item ao inves de nota (impossivel dar join nos item)
+
+operação da nota especificado ja num campo da tabela ao inves da pagina de movimentacao
+0 - entrada
+1 - saída
+
+deletar da tabela quando movimentar

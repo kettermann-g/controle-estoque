@@ -8,9 +8,8 @@ $userDAO = new UserDAO($conexao);
 $email = filter_input(INPUT_POST, "email");
 $senha = filter_input(INPUT_POST, "senha");
 
-
 if($userDAO->authenticateUser($email, $senha)) {
   header("Location: ../index.php");
 } else {
-  // header("location: ../login.php");
+  //header("location: ../login.php");
 }
