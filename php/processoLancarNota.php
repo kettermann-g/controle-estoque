@@ -3,9 +3,19 @@
   include_once("../dao/NotaFiscalDAO.php");
 
   $notaFiscalDAO = new NotaFiscalDAO($conexao);
-  $userDAO = new UserDAO($conexao);
 
-  $numeroNota = filter_input(INPUT_POST, "numeroNota");
+  if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
+    $id = $_SESSION['id'];
+    $username = $_SESSION['username'];
+    $userDAO = new UserDAO($conexao);
+    $user = $userDAO->findUserLogin($id, $username);
+
+  }
+
+
+  $numeroNota = filter_input(INPUT_POST, "numero-nota");
+
+  echo $numeroNota;
     // pega a nota recebida
 
 

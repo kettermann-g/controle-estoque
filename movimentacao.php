@@ -30,7 +30,7 @@
             <form action="<?= $BASE_URL ?>/php/processoLancarNota.php" method="post" id="formulario">
                 <h1 class="h1-cadastro">Movimentação de estoque</h1>
             <div class="form-inputs-container">
-                <input class="input" id="referencia" name="referencia" required="required" type="number" max="999999" placeholder="Nota fiscal"/>
+                <input class="input" id="numero-nota" name="numero-nota" required="required" type="number" max="999999" placeholder="Nota fiscal"/>
 
                 <input class="input" id="origem" name="origem" required="required" type="text" placeholder="Origem ou destino"/>
 
