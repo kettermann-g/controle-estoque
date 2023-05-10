@@ -73,12 +73,12 @@
         </li>
 
         <li id="relatório" class="dead-link">
-          <i class="dead-link fa-solid fa-file"></i>
+          <i class="dead-link fa-solid fa-database"></i>
           <span>Estoque</span>
         </li>
 
         <li id="fluxo" class="dead-link">
-          <i class="dead-link fa-solid fa-file"></i>
+          <i class="dead-link fa-solid fa-rotate"></i>
           <span>Fluxo de Estoque</span>
         </li>
       </div>
@@ -116,14 +116,14 @@
       
       <a class="nav-link" href="<?= $BASE_URL ?>/estoque.php">
         <li id="estoque" class="nav-item link-enabled">
-          <i id="cor4" class="fa-solid fa-file"></i>
+          <i id="cor4" class="fa-solid fa-database"></i>
           <span>Estoque</span>
         </li>
       </a>
 
       <a class="nav-link" href="<?= $BASE_URL ?>/fluxoEstoque.php">
         <li id="fluxo" class="nav-item link-enabled">
-          <i id="cor4" class="fa-solid fa-file"></i>
+          <i id="cor4" class="fa-solid fa-rotate"></i>
           <span>Fluxo de Estoque</span>
         </li>
       </a>
