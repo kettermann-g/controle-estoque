@@ -80,6 +80,7 @@ footer {
     max-width: 100vw;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 30px 30px;
 }
 
