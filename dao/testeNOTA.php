@@ -67,7 +67,7 @@
 
   echo "FIND NOTAS NAO LANCADAS <br> <br>";
 
-  $notasDisponiveis = $notaDAO->findDisponiveis(1);
+  $notasDisponiveis = $notaDAO->findNotasDisponiveis(1);
 
   echo "PRINT R NOTAS DISPONIVEIS <br>";
   print_r($notasDisponiveis);

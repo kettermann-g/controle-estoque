@@ -51,12 +51,15 @@
     // pra cada item, insert na tabela movimentacao com id da nota no objeto
     print_r($nota->produtos); echo "<br><br>";
 
+    // update lancada na tabela de notas
+    // atualizar itens ou inserir no estoque geral
+
     echo "<br><strong>ENTRANDO NO LOOP FOR EACH PRODUTO DO OBJETO NOTA</strong> <br><br>";
 
     foreach($nota->produtos as $produto) {
       $produtoExiste = $notaFiscalDAO->checarEstoque($produto['marca_item'], $produto['descricao_item']);
       
-      $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
+      $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste, $user->id);
     }
 
 
@@ -75,5 +78,4 @@
 
 
   
-  // update lancada na tabela de notas
-  // atualizar itens ou inserir no estoque geral
+

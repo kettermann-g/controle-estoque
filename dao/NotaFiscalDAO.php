@@ -1,4 +1,6 @@
 <?php
+//MOVIMENTAR PRODUTO LINHA 71
+//MOVIMENTAR NOTA ULTIMA FUNCAO
 
   include_once("classes.php");
 
@@ -43,7 +45,7 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   public function findProdutos($idNotaFiscal) {
 
-    $stmt = $this->conn->prepare("SELECT id_item, marca_item, descricao_item, quantidade FROM itens_nota WHERE id_nota = :id");
+    $stmt = $this->conn->prepare("SELECT id_item, marca_item, descricao_item, quantidade, medida FROM itens_nota WHERE id_nota = :id");
 
     $stmt->bindParam(":id", $idNotaFiscal);
 
@@ -66,13 +68,17 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function movimentarProduto($tipoMOV, $data, bool $existe) {
+  public function movimentarProduto($tipoMOV, $data, bool $existe, $userId) {
+    $marca = $data['marca_item'];
+    $descricao = $data['descricao_item'];
     
     //recebe tipo de movimentaçao (saida, entrada)
     //declara querys
 
     //TERMINAR QUERY
     if($tipoMOV === "entrada" && !$existe) {
+      $qnt = $data['quantidade'];
+      $medida = $data['medida'];
 
       // $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
       echo $data['marca_item'] . " - " . $data['descricao_item'] . " não existe no estoque :D talvez o código nao esteja funcionando <br>";
@@ -83,11 +89,20 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
       print_r($data); echo "<br><br>";
 
+      $stmt = $this->conn->prepare("INSERT INTO estoque (id_usuario, marca, descricao, medida, quantidade) VALUES (:id_usuario, :marca, :descricao, :medida, :quantidade)");
+
+      $stmt->bindParam(":id_usuario", $userId);
+      $stmt->bindParam(":marca", $marca);
+      $stmt->bindParam(":descricao", $descricao);
+      $stmt->bindParam(":medida", $medida);
+      $stmt->bindParam(":quantidade", $qnt);
+
+      $stmt->execute();
+
 
     } else if($tipoMOV === "entrada" && $existe) {
       
-      $marca = $data['marca_item'];
-      $descricao = $data['descricao_item'];
+      
 
       echo "$marca - $descricao já existe no estoque :D código funcionando! <br>";
       echo "O tipo do movimentos é entrada e o produto existe no estoque! vai ter a quantidade atualizada por UPDATE<br><br>";
@@ -95,9 +110,28 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
       print_r($data);echo "<br><br>";
 
-      $qnt = $this->buscarQuantidade($marca, $descricao);
+      //ATUALIZANDO ESTOQUE
+      $res = $this->buscarQuantidade($marca, $descricao);
 
-      echo "QUANTIDADE ESTOQUE: $qnt <br><br>";
+      $qnt = $res['quantidade'];
+      $idProduto = $res['idProduto'];
+
+      echo "QUANTIDADE ESTOQUE: $qnt | ID PRODUTO $idProduto<br><br>";
+      
+
+      $novaQnt = $qnt + $data['quantidade'];
+
+      echo "NOVA QUANTIDADE: $novaQnt <br><br>";
+
+      $stmtUpdateQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
+
+      $stmtUpdateQuantidade->bindParam(":quantidade", $novaQnt);
+      $stmtUpdateQuantidade->bindParam(":marca", $marca);
+      $stmtUpdateQuantidade->bindParam(":descricao", $descricao);
+      $stmtUpdateQuantidade->bindParam(":idProduto", $idProduto);
+      $stmtUpdateQuantidade->bindParam(":id_usuario", $userId);
+
+      $stmtUpdateQuantidade->execute();
 
 
     }
@@ -169,19 +203,23 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   }
 
   public function buscarQuantidade($marca, $descricao) {
-    $stmt = $this->conn->prepare("SELECT quantidade FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
+    $stmt = $this->conn->prepare("SELECT idProduto, quantidade FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
 
     $stmt->bindParam(":marca", $marca);
     $stmt->bindParam(":descricao", $descricao);
 
     $stmt->execute();
 
-    $qnt = $stmt->fetch();
+    $res = $stmt->fetch();
 
-    if ($qnt) {
-      return $qnt['quantidade'];
+    if ($res) {
+      return $res;
     } else {
       return false;
     }
+  }
+
+  public function movimentarNota($tipoMOV) {
+    
   }
 }
