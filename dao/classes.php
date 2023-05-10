@@ -43,6 +43,7 @@ interface ProdutoDAOInterface {
 class NotaFiscal {
   public $id;
   public $numero;
+  public $lancada;
   public $id_usuario;
   public $produtos;
 }
@@ -51,7 +52,9 @@ interface NotaFiscalDAOInterface {
   public function findAllNotas($userId);
   public function findProdutos($idNotaFiscal);
   public function buildNota($data);
-  public function movimentar($saida = false);
+  public function movimentar($tipoMOV, $idNota);
   public function findNotaByNumero($numeroNota);
   public function findNotaById($idNota);
+  public function findDisponiveis($userId);
+  public function lancarNota($idNota);
 }

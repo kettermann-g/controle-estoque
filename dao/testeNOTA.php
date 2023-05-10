@@ -63,3 +63,38 @@
     }
     echo "<br>";
   }
+
+
+  echo "FIND NOTAS NAO LANCADAS <br> <br>";
+
+  $notasDisponiveis = $notaDAO->findDisponiveis(1);
+
+  echo "PRINT R NOTAS DISPONIVEIS <br>";
+  print_r($notasDisponiveis);
+
+  echo "<br> <br>";
+
+  $listaNotas = [];
+
+  $c = 0;
+
+  foreach($notasDisponiveis as $nota) {
+    $listaNotas[$c] = $notaDAO->buildNota($nota);
+    $c++;
+  }
+
+  echo "PRINT R NOTAS (OBJETOS EM ARRAY) <br>";
+  print_r($listaNotas);
+
+  echo "<br> <br>";
+
+  foreach($listaNotas as $nota) {
+    echo "ID NOTA: " . $nota->id . "<br>";
+    echo "ID USUARIO: " . $nota->id_usuario . "<br>";
+    echo "NUMERO NOTA: " . $nota->numero . "<br><br>";
+    echo "ITENS: <br>";
+    foreach($nota->produtos as $produtos) {
+      echo "| ID ITEM: " . $produtos['id_item'] . "| MARCA ITEM: ". $produtos['marca_item'] . "| DESCRIÇÃO ITEM: " .  $produtos['descricao_item'] . "| QUANTIDADE: " . $produtos['quantidade'] . "<br>";
+    }
+    echo "<br>";
+  }
