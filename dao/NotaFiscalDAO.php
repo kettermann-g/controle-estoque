@@ -26,7 +26,7 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function findDisponiveis($userId) {
+  public function findNotasDisponiveis($userId) {
     $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE id_usuario = :id AND lancada = 0");
 
     $stmt->bindParam(":id", $userId);
@@ -68,18 +68,29 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function movimentar($tipoMOV, $data) {
+  public function movimentarProduto($tipoMOV, $data, bool $existe) {
     
     //recebe tipo de movimentaçao (saida, entrada)
     //declara querys
 
     //TERMINAR QUERY
-    if($tipoMOV === "entrada") {
-      $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
-    } else if($tipoMOV === "saida") {
+    if($tipoMOV === "entrada" && !$existe) {
 
+      // $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
+
+      echo "O tipo do movimentos é entrada e o produto não existe no estoque! o produto vai ser colocado por query INSERT <br><br>";
+
+      echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
+      print_r($data); echo "<br><br>";
+
+
+    } else if($tipoMOV === "entrada" && $existe) {
+      echo "O tipo do movimentos é entrada e o produto existe no estoque! vai ter a quantidade atualizada por UPDATE<br><br>";
+
+      echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
+      print_r($data);echo "<br><br>";
     }
-    //checa se ja existe
+    //checa se ja existe (FOI FEITO FORA DA FUNÇÃO, aqui é utilizado só a boolean passada por fora da função nessa checagem)
     //na entrada, se nao existe, da insert
     //na entrada, se existe, select quantidade, adiciona, update
     //na saída, se nao existe, da erro
@@ -134,6 +145,23 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       return false;
     }
 
+  }
+
+  public function checarEstoque($marca, $descricao) {
+    $stmt= $this->conn->prepare("SELECT * FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
+
+    $stmt->bindParam(":marca", $marca);
+    $stmt->bindParam(":descricao", $descricao);
+
+    $stmt->execute();
+
+    if ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      return true;
+    } else {
+      return false;
+    }
+
+    
   }
 
 

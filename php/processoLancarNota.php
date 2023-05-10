@@ -6,9 +6,10 @@
   include_once("../dao/UserDAO.php");
 
 
-
+  //instanciando objeto DAO da nota para conversar com o banco de dados
   $notaFiscalDAO = new NotaFiscalDAO($conexao);
 
+  //veriifcando se existe usuario na sessao, se nao, redireciona pro index
   if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
     $id = $_SESSION['id'];
     $username = $_SESSION['username'];
@@ -19,12 +20,14 @@
     header("Location: ../index.php");
   }
   
-
+  // pegando a nota recebida e o tipo de movimento
   $numeroNota = filter_input(INPUT_POST, "numero-nota");
 
-  echo $numeroNota;
-  // pega a nota recebida
+  echo " $numeroNota <br>";
+  
+  $tipoMOV = filter_input(INPUT_POST, "movi");
 
+  echo " $tipoMOV <br>";
 
   // find nota by numero
   echo "<br>";
@@ -45,8 +48,19 @@
     // pra cada item, insert na tabela movimentacao com id da nota no objeto
     print_r($nota->produtos); echo "<br><br>";
 
+    echo "<br><strong>ENTRANDO NO LOOP FOR EACH PRODUTO DO OBJETO NOTA</strong> <br><br>";
+
     foreach($nota->produtos as $produto) {
-      
+      $produtoExiste = $notaFiscalDAO->checarEstoque($produto['marca_item'], $produto['descricao_item']);
+      if ($produtoExiste) {
+        echo $produto['marca_item'] . " - " . $produto['descricao_item'] . " já existe no estoque :D código funcionando! <br>";
+
+        $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
+      } else {
+        echo $produto['marca_item'] . " - " . $produto['descricao_item'] . " não existe no estoque :D talvez o código nao esteja funcionando <br>";
+
+        $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
+      }
     }
 
 

@@ -52,9 +52,10 @@ interface NotaFiscalDAOInterface {
   public function findAllNotas($userId);
   public function findProdutos($idNotaFiscal);
   public function buildNota($data);
-  public function movimentar($tipoMOV, $idNota);
+  public function movimentarProduto($tipoMOV, $data, bool $existe);
   public function findNotaByNumero($numeroNota);
   public function findNotaById($idNota);
-  public function findDisponiveis($userId);
+  public function findNotasDisponiveis($userId);
   public function lancarNota($idNota);
+  public function checarEstoque($marca, $descricao);
 }
