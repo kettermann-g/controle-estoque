@@ -68,20 +68,26 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function movimentar($tipoMOV, $idNota) {
-    // pega a nota recebida
-    // find nota by id
+  public function movimentar($tipoMOV, $data) {
+    
+    //recebe tipo de movimentaçao (saida, entrada)
+    //declara querys
 
-    //$nota = $this->findNotaById($idNota);
+    //TERMINAR QUERY
+    if($tipoMOV === "entrada") {
+      $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
+    } else if($tipoMOV === "saida") {
+
+    }
+    //checa se ja existe
+    //na entrada, se nao existe, da insert
+    //na entrada, se existe, select quantidade, adiciona, update
+    //na saída, se nao existe, da erro
+    //na saída, se existe, select quantidade, subtrai, update
+    //se resulatdo final for negativo fodase nao é problema pra agora
+
 
     
-
-    // builda nota
-
-
-    // pra cada item, insert na tabela movimentacao com id da nota no objeto
-    // update lancada na tabela de notas
-    // atualizar itens ou inserir no estoque geral
   }
 
   public function lancarNota($idNota) {
@@ -92,8 +98,13 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     $stmt->execute();
   }
 
-  public function findNotaByNumero($numeroNota) {
-    $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE numeroNota = :numeroNota limit 1");
+  public function findNotaByNumero($numeroNota, $disponivel = false) {
+    if (!$disponivel) {
+      $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE numeroNota = :numeroNota limit 1");
+    } else if ($disponivel) {
+      $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE numeroNota = :numeroNota AND lancada = 0 limit 1");
+    }
+   
 
     $stmt->bindParam(":numeroNota", $numeroNota);
 
