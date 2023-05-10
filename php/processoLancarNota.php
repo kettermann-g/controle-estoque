@@ -37,7 +37,10 @@
 
 
   // builda nota
-  echo $findNota['id_usuario'] . "<br><br>";
+  if (isset($findNota['id_usuario'])) {
+    echo $findNota['id_usuario'] . "<br><br>";
+  }
+  
   if($findNota && $findNota['id_usuario'] === $user->id) {
     $nota = $notaFiscalDAO->buildNota($findNota);
     echo "id do usuario da nota bate com o usuario da sessao hihi :3 xd <br><br>";

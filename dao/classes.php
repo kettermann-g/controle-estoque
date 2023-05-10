@@ -58,4 +58,5 @@ interface NotaFiscalDAOInterface {
   public function findNotasDisponiveis($userId);
   public function lancarNota($idNota);
   public function checarEstoque($marca, $descricao);
+  public function buscarQuantidade($marca, $descricao);
 }

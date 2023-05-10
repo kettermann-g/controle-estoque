@@ -17,7 +17,6 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $stmt->execute();
 
-    
     if($notas = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
       return $notas;
     } else {
@@ -33,7 +32,6 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $stmt->execute();
 
-    
     if($notas = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
       return $notas;
     } else {
@@ -87,13 +85,21 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
 
     } else if($tipoMOV === "entrada" && $existe) {
-      ;
+      
+      $marca = $data['marca_item'];
+      $descricao = $data['descricao_item'];
 
-      echo $data['marca_item'] . " - " . $data['descricao_item'] . " já existe no estoque :D código funcionando! <br>";
+      echo "$marca - $descricao já existe no estoque :D código funcionando! <br>";
       echo "O tipo do movimentos é entrada e o produto existe no estoque! vai ter a quantidade atualizada por UPDATE<br><br>";
 
       echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
       print_r($data);echo "<br><br>";
+
+      $qnt = $this->buscarQuantidade($marca, $descricao);
+
+      echo "QUANTIDADE ESTOQUE: $qnt <br><br>";
+
+
     }
 
     echo "----------------<br><br>";
@@ -104,8 +110,6 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     //na saída, se existe, select quantidade, subtrai, update
     //se resulatdo final for negativo fodase nao é problema pra agora
 
-
-    
   }
 
   public function lancarNota($idNota) {
@@ -123,18 +127,15 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE numeroNota = :numeroNota AND lancada = 0 limit 1");
     }
    
-
     $stmt->bindParam(":numeroNota", $numeroNota);
 
     $stmt->execute();
 
-    
     if($nota = $stmt->fetch(PDO::FETCH_ASSOC)) {
       return $nota;
     } else {
       return false;
     }
-
 
   }
 
@@ -145,13 +146,11 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $stmt->execute();
 
-    
     if($nota = $stmt->fetch(PDO::FETCH_ASSOC)) {
       return $nota;
     } else {
       return false;
     }
-
   }
 
   public function checarEstoque($marca, $descricao) {
@@ -162,13 +161,28 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $stmt->execute();
 
-    if ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    if ($stmt->fetch(PDO::FETCH_ASSOC)) {
       return true;
     } else {
       return false;
     }
+  }
 
-    
+  public function buscarQuantidade($marca, $descricao) {
+      $stmt = $this->conn->prepare("SELECT quantidade FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
+
+      $stmt->bindParam(":marca", $marca);
+      $stmt->bindParam(":descricao", $descricao);
+
+      $stmt->execute();
+
+      $qnt = $stmt->fetch();
+
+      if ($qnt) {
+        return $qnt['quantidade'];
+      } else {
+        return false;
+      }
   }
 
 
