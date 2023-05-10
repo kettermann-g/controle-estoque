@@ -77,6 +77,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     if($tipoMOV === "entrada" && !$existe) {
 
       // $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
+      echo $data['marca_item'] . " - " . $data['descricao_item'] . " não existe no estoque :D talvez o código nao esteja funcionando <br>";
+      
 
       echo "O tipo do movimentos é entrada e o produto não existe no estoque! o produto vai ser colocado por query INSERT <br><br>";
 
@@ -85,11 +87,16 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
 
     } else if($tipoMOV === "entrada" && $existe) {
+      ;
+
+      echo $data['marca_item'] . " - " . $data['descricao_item'] . " já existe no estoque :D código funcionando! <br>";
       echo "O tipo do movimentos é entrada e o produto existe no estoque! vai ter a quantidade atualizada por UPDATE<br><br>";
 
       echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
       print_r($data);echo "<br><br>";
     }
+
+    echo "----------------<br><br>";
     //checa se ja existe (FOI FEITO FORA DA FUNÇÃO, aqui é utilizado só a boolean passada por fora da função nessa checagem)
     //na entrada, se nao existe, da insert
     //na entrada, se existe, select quantidade, adiciona, update

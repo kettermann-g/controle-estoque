@@ -52,15 +52,8 @@
 
     foreach($nota->produtos as $produto) {
       $produtoExiste = $notaFiscalDAO->checarEstoque($produto['marca_item'], $produto['descricao_item']);
-      if ($produtoExiste) {
-        echo $produto['marca_item'] . " - " . $produto['descricao_item'] . " já existe no estoque :D código funcionando! <br>";
-
-        $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
-      } else {
-        echo $produto['marca_item'] . " - " . $produto['descricao_item'] . " não existe no estoque :D talvez o código nao esteja funcionando <br>";
-
-        $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
-      }
+      
+      $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste);
     }
 
 
