@@ -169,21 +169,19 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   }
 
   public function buscarQuantidade($marca, $descricao) {
-      $stmt = $this->conn->prepare("SELECT quantidade FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
+    $stmt = $this->conn->prepare("SELECT quantidade FROM estoque WHERE marca = :marca AND descricao = :descricao limit 1");
 
-      $stmt->bindParam(":marca", $marca);
-      $stmt->bindParam(":descricao", $descricao);
+    $stmt->bindParam(":marca", $marca);
+    $stmt->bindParam(":descricao", $descricao);
 
-      $stmt->execute();
+    $stmt->execute();
 
-      $qnt = $stmt->fetch();
+    $qnt = $stmt->fetch();
 
-      if ($qnt) {
-        return $qnt['quantidade'];
-      } else {
-        return false;
-      }
+    if ($qnt) {
+      return $qnt['quantidade'];
+    } else {
+      return false;
+    }
   }
-
-
 }
