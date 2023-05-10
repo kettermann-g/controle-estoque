@@ -14,8 +14,7 @@
     }
 
     public function findAll($userId) {
-      $stmt = $this->conn->prepare("SELECT idProduto, marca, descricao, medidas.nome_extenso as medida, quantidade FROM estoque
-        INNER JOIN medidas ON estoque.id_medida = medidas.id_medida
+      $stmt = $this->conn->prepare("SELECT idProduto, marca, descricao, medida, quantidade FROM estoque
           WHERE id_usuario = :id_usuario");
 
       $stmt->bindParam(":id_usuario", $userId);

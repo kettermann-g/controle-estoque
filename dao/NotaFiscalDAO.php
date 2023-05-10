@@ -76,18 +76,9 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     //declara querys
 
     //TERMINAR QUERY
-    if($tipoMOV === "entrada" && !$existe) {
+    if($tipoMOV === "Entrada" && !$existe) {
       $qnt = $data['quantidade'];
       $medida = $data['medida'];
-
-      // $stmt = $this->conn->prepare("INSERT INTO movimentacao (estoque_idProduto, tipoMovimento, quantidade, dataMovimento, id_usuario) VALUES (:idProduto, :tipoMovimento, :quantidade, ");
-      echo $data['marca_item'] . " - " . $data['descricao_item'] . " não existe no estoque :D talvez o código nao esteja funcionando <br>";
-      
-
-      echo "O tipo do movimentos é entrada e o produto não existe no estoque! o produto vai ser colocado por query INSERT <br><br>";
-
-      echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
-      print_r($data); echo "<br><br>";
 
       $stmt = $this->conn->prepare("INSERT INTO estoque (id_usuario, marca, descricao, medida, quantidade) VALUES (:id_usuario, :marca, :descricao, :medida, :quantidade)");
 
@@ -100,58 +91,73 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmt->execute();
 
 
-    } else if($tipoMOV === "entrada" && $existe) {
+    } else if($tipoMOV === "Entrada" && $existe) {
       
-      
-
-      echo "$marca - $descricao já existe no estoque :D código funcionando! <br>";
-      echo "O tipo do movimentos é entrada e o produto existe no estoque! vai ter a quantidade atualizada por UPDATE<br><br>";
-
-      echo "PRINT R INFORMAÇOES QUE CHEGAM NA FUNCAO MOVIMENTAR PELA VARIAVEL DATA <br>";
-      print_r($data);echo "<br><br>";
-
       //ATUALIZANDO ESTOQUE
+      //AUMENTANDO QUANTIDADE NO ESTOQUE
+      $res = $this->buscarQuantidade($marca, $descricao);
+
+      $qnt = $res['quantidade'];
+      $idProduto = $res['idProduto'];
+      
+
+      $novaQnt = $qnt + $data['quantidade'];
+
+      $stmtAumentaQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
+
+      $stmtAumentaQuantidade->bindParam(":quantidade", $novaQnt);
+      $stmtAumentaQuantidade->bindParam(":marca", $marca);
+      $stmtAumentaQuantidade->bindParam(":descricao", $descricao);
+      $stmtAumentaQuantidade->bindParam(":idProduto", $idProduto);
+      $stmtAumentaQuantidade->bindParam(":id_usuario", $userId);
+
+      $stmtAumentaQuantidade->execute();
+
+
+    } else if ($tipoMOV === "Saída" && $existe) {
+      // BUSCANDO QUANTIDADE
       $res = $this->buscarQuantidade($marca, $descricao);
 
       $qnt = $res['quantidade'];
       $idProduto = $res['idProduto'];
 
-      echo "QUANTIDADE ESTOQUE: $qnt | ID PRODUTO $idProduto<br><br>";
-      
+      $novaQnt = $qnt - $data['quantidade'];
 
-      $novaQnt = $qnt + $data['quantidade'];
+      $stmtDiminuiQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
 
-      echo "NOVA QUANTIDADE: $novaQnt <br><br>";
+      $stmtDiminuiQuantidade->bindParam(":quantidade", $novaQnt);
+      $stmtDiminuiQuantidade->bindParam(":marca", $marca);
+      $stmtDiminuiQuantidade->bindParam(":descricao", $descricao);
+      $stmtDiminuiQuantidade->bindParam(":idProduto", $idProduto);
+      $stmtDiminuiQuantidade->bindParam(":id_usuario", $userId);
 
-      $stmtUpdateQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
-
-      $stmtUpdateQuantidade->bindParam(":quantidade", $novaQnt);
-      $stmtUpdateQuantidade->bindParam(":marca", $marca);
-      $stmtUpdateQuantidade->bindParam(":descricao", $descricao);
-      $stmtUpdateQuantidade->bindParam(":idProduto", $idProduto);
-      $stmtUpdateQuantidade->bindParam(":id_usuario", $userId);
-
-      $stmtUpdateQuantidade->execute();
+      $stmtDiminuiQuantidade->execute();
 
 
     }
-
-    echo "----------------<br><br>";
-    //checa se ja existe (FOI FEITO FORA DA FUNÇÃO, aqui é utilizado só a boolean passada por fora da função nessa checagem)
-    //na entrada, se nao existe, da insert
-    //na entrada, se existe, select quantidade, adiciona, update
-    //na saída, se nao existe, da erro
-    //na saída, se existe, select quantidade, subtrai, update
-    //se resulatdo final for negativo fodase nao é problema pra agora
+    //se resulatdo final for negativo ou se o produto nao existir no estoque aí só deus sabe o que acontece
 
   }
 
-  public function lancarNota($idNota) {
-    $stmt = $this->conn->prepare("UPDATE notafiscal SET lancada = 1 WHERE idNota = :idNota");
+  public function lancarNota($idNota, $tipoMOV, $userId, $numeroNota) {
+    $stmt = $this->conn->prepare("INSERT INTO movimentacao (id_notaFiscal, tipoMovimento, dataMovimento, id_usuario) VALUES (:id_notaFiscal, :tipoMovimento, :dataMovimento, :id_usuario)");
 
-    $stmt->bindParam(":idNota", $idNota);
+    $dataMovimento = date("Y-m-d");
+
+    $stmt->bindParam(":id_notaFiscal", $idNota);
+    $stmt->bindParam(":tipoMovimento", $tipoMOV);
+    $stmt->bindParam(":dataMovimento", $dataMovimento);
+    $stmt->bindParam(":id_usuario", $userId);
 
     $stmt->execute();
+
+    $stmtUpdate = $this->conn->prepare("UPDATE notafiscal SET lancada = 1 WHERE idNota = :idNota AND numeroNota = :numeroNota AND id_usuario = :id_usuario");
+
+    $stmtUpdate->bindParam(":idNota", $idNota);
+    $stmtUpdate->bindParam(":numeroNota", $numeroNota);
+    $stmtUpdate->bindParam(":id_usuario", $userId);
+
+    $stmtUpdate->execute();
   }
 
   public function findNotaByNumero($numeroNota, $disponivel = false) {
@@ -217,9 +223,5 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     } else {
       return false;
     }
-  }
-
-  public function movimentarNota($tipoMOV) {
-    
   }
 }

@@ -3,7 +3,7 @@
   include_once("classes.php");
   
 
-class UserDAO implements UserDAOInterface {
+  class UserDAO implements UserDAOInterface {
   private $conn;
   
 

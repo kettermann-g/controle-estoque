@@ -62,20 +62,10 @@
       $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste, $user->id);
     }
 
+    $notaFiscalDAO->lancarNota($nota->id, $tipoMOV, $user->id, $nota->numero);
+
 
 
   } else {
     echo "NAO!!!! >:(";
   }
-  
-
-
-
-
-  
-
-  
-
-
-  
-

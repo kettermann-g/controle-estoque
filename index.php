@@ -1,4 +1,5 @@
 <?php 
+
   $titulo = "Home";
   include_once("templates/header.php");
 ?>

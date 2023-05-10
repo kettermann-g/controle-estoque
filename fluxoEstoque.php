@@ -1,4 +1,5 @@
 <?php
+
   $titulo = "Fluxo de Estoque";
   include_once("templates/header.php");
   include_once("dao/ProdutoDAO.php");
@@ -6,6 +7,8 @@
   $produtoDAO = new ProdutoDAO($conexao);
   
   $produtos = $produtoDAO->findFluxo($user->id);
+
+  
 
 ?>
   <main class="container">

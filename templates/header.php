@@ -1,11 +1,14 @@
 <?php
+
   include_once("php/url.php");
   include_once("php/conexao.php");
   include_once("dao/UserDAO.php");
 
+  $logado = isset($_SESSION['id']) && isset($_SESSION['username']);
+
   $pagina = $_SERVER['REQUEST_URI'];
 
-  if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
+  if ($logado) {
     $id = $_SESSION['id'];
     $username = $_SESSION['username'];
     $userDAO = new UserDAO($conexao);

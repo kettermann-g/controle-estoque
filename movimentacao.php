@@ -1,11 +1,12 @@
 <?php
+
   $titulo = "Novo Cadastro";
   include_once("templates/header.php");
   include_once("dao/NotaFiscalDAO.php");
 
   $notaFiscal = new NotaFiscalDAO($conexao);
 
-  $allNotas = $notaFiscal->findAllNotas($user->id);
+  $allNotas = $notaFiscal->findNotasDisponiveis($user->id);
 
   
 ?>
@@ -19,9 +20,13 @@
               </tr>
             </thead>
             <tbody>
+              <?php if($allNotas): ?>
               <?php foreach($allNotas as $nota): ?>
                 <tr><td><?= $nota['numeroNota'] ?></td></tr>
               <?php endforeach; ?>
+              <?php else: ?>
+                <tr><td>Nenhuma nota disponível</td></tr>
+              <?php endif; ?>
             </tbody>
           </table>
     
@@ -35,13 +40,13 @@
                 <input class="input" id="origem" name="origem" required="required" type="text" placeholder="Origem ou destino"/>
 
                 <div class="radio-container">
-                    <input type="radio" id="entrada-radio" name="movi" value="entrada"
+                    <input type="radio" id="entrada-radio" name="movi" value="Entrada"
                             checked>
                     <label for="entrada">Entrada</label>
                 </div>
 
                 <div class="radio-container">
-                    <input type="radio" id="saida-radio" name="movi" value="saida">
+                    <input type="radio" id="saida-radio" name="movi" value="Saída">
                     <label for="saida">Saída</label>
                 </div>
 
