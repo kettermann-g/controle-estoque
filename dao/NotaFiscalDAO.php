@@ -12,10 +12,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     $this->conn = $conn;
   }
 
-  public function findAllNotas($userId) {
-    $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE id_usuario = :id");
-
-    $stmt->bindParam(":id", $userId);
+  public function findAllNotas() {
+    $stmt = $this->conn->prepare("SELECT * FROM notafiscal");
 
     $stmt->execute();
 
@@ -27,10 +25,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function findNotasDisponiveis($userId) {
-    $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE id_usuario = :id AND lancada = 0");
-
-    $stmt->bindParam(":id", $userId);
+  public function findNotasDisponiveis() {
+    $stmt = $this->conn->prepare("SELECT * FROM notafiscal WHERE lancada = 0");
 
     $stmt->execute();
 
@@ -80,9 +76,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $qnt = $data['quantidade'];
       $medida = $data['medida'];
 
-      $stmt = $this->conn->prepare("INSERT INTO estoque (id_usuario, marca, descricao, medida, quantidade) VALUES (:id_usuario, :marca, :descricao, :medida, :quantidade)");
+      $stmt = $this->conn->prepare("INSERT INTO estoque (marca, descricao, medida, quantidade) VALUES (:marca, :descricao, :medida, :quantidade)");
 
-      $stmt->bindParam(":id_usuario", $userId);
       $stmt->bindParam(":marca", $marca);
       $stmt->bindParam(":descricao", $descricao);
       $stmt->bindParam(":medida", $medida);
@@ -103,13 +98,12 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
       $novaQnt = $qnt + $data['quantidade'];
 
-      $stmtAumentaQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
+      $stmtAumentaQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto");
 
       $stmtAumentaQuantidade->bindParam(":quantidade", $novaQnt);
       $stmtAumentaQuantidade->bindParam(":marca", $marca);
       $stmtAumentaQuantidade->bindParam(":descricao", $descricao);
       $stmtAumentaQuantidade->bindParam(":idProduto", $idProduto);
-      $stmtAumentaQuantidade->bindParam(":id_usuario", $userId);
 
       $stmtAumentaQuantidade->execute();
 
@@ -123,13 +117,12 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
       $novaQnt = $qnt - $data['quantidade'];
 
-      $stmtDiminuiQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto AND id_usuario = :id_usuario");
+      $stmtDiminuiQuantidade = $this->conn->prepare("UPDATE estoque SET quantidade = :quantidade WHERE marca = :marca AND descricao = :descricao AND idProduto = :idProduto");
 
       $stmtDiminuiQuantidade->bindParam(":quantidade", $novaQnt);
       $stmtDiminuiQuantidade->bindParam(":marca", $marca);
       $stmtDiminuiQuantidade->bindParam(":descricao", $descricao);
       $stmtDiminuiQuantidade->bindParam(":idProduto", $idProduto);
-      $stmtDiminuiQuantidade->bindParam(":id_usuario", $userId);
 
       $stmtDiminuiQuantidade->execute();
 

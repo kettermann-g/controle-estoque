@@ -1,4 +1,7 @@
-tirar restriçao de fk id usuario da nota fiscal
+tirar restriçao de fk id usuario da nota fiscal {
+  feito no banco de dados
+  --falta fazer nas consultas do DAO
+}
 salvar username em string no movimento
 
 --

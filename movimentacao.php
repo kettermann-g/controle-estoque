@@ -6,7 +6,7 @@
 
   $notaFiscal = new NotaFiscalDAO($conexao);
 
-  $allNotas = $notaFiscal->findNotasDisponiveis($user->id);
+  $allNotas = $notaFiscal->findNotasDisponiveis();
 
   
 ?>
