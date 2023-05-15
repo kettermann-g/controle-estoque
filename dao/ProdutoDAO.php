@@ -13,11 +13,8 @@
       
     }
 
-    public function findAll($userId) {
-      $stmt = $this->conn->prepare("SELECT idProduto, marca, descricao, medida, quantidade FROM estoque
-          WHERE id_usuario = :id_usuario");
-
-      $stmt->bindParam(":id_usuario", $userId);
+    public function findAll() {
+      $stmt = $this->conn->prepare("SELECT idProduto, marca, descricao, medida, quantidade FROM estoque");
 
       $stmt->execute();
 
