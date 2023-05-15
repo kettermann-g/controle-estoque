@@ -6,7 +6,7 @@
 
   $produtoDAO = new ProdutoDAO($conexao);
   
-  $produtos = $produtoDAO->findAll($user->id);
+  $produtos = $produtoDAO->findAll();
 
 
   

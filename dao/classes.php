@@ -34,7 +34,7 @@ class Produto {
 
 interface ProdutoDAOInterface {
   public function buildProduto($data);
-  public function findAll($userId);
+  public function findAll();
   public function findFluxo($userId);
 }
 
