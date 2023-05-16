@@ -65,8 +65,13 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   }
 
   public function movimentarProduto($tipoMOV, $data, bool $existe, $userId) {
+    
+    
     $marca = $data['marca_item'];
     $descricao = $data['descricao_item'];
+    if ($existe) {
+      $res = $this->buscarQuantidade($marca, $descricao);
+    }
     
     //recebe tipo de movimentaçao (saida, entrada)
     //declara querys
@@ -110,7 +115,6 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     } else if ($tipoMOV === "Saída" && $existe) {
       // BUSCANDO QUANTIDADE
-      $res = $this->buscarQuantidade($marca, $descricao);
 
       $qnt = $res['quantidade'];
       $idProduto = $res['idProduto'];
