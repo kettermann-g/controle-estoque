@@ -57,7 +57,7 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $nota->id = $data['idNota'];
     $nota->numero = $data['numeroNota'];
-    $nota->id_usuario = $data['id_usuario'];
+    $nota->tipoMOV = $data['tipoMov'];
     $nota->produtos = $this->findProdutos($nota->id);
 
     return $nota;
@@ -65,19 +65,16 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   }
 
   public function movimentarProduto($tipoMOV, $data, bool $existe, $userId) {
-    
-    
     $marca = $data['marca_item'];
     $descricao = $data['descricao_item'];
-    if ($existe) {
-      $res = $this->buscarQuantidade($marca, $descricao);
-    }
     
     //recebe tipo de movimentaçao (saida, entrada)
     //declara querys
 
     //TERMINAR QUERY
-    if($tipoMOV === "Entrada" && !$existe) {
+    // parametro tipo mov:
+    // entrada é 1 (true (booleano do banco de dados))
+    if($tipoMOV === 1 && !$existe) {
       $qnt = $data['quantidade'];
       $medida = $data['medida'];
 
@@ -91,7 +88,7 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmt->execute();
 
 
-    } else if($tipoMOV === "Entrada" && $existe) {
+    } else if($tipoMOV === 1 && $existe) {
       
       //ATUALIZANDO ESTOQUE
       //AUMENTANDO QUANTIDADE NO ESTOQUE
@@ -113,8 +110,9 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmtAumentaQuantidade->execute();
 
 
-    } else if ($tipoMOV === "Saída" && $existe) {
+    } else if ($tipoMOV === 0 && $existe) {
       // BUSCANDO QUANTIDADE
+      $res = $this->buscarQuantidade($marca, $descricao);
 
       $qnt = $res['quantidade'];
       $idProduto = $res['idProduto'];
@@ -136,11 +134,16 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
-  public function lancarNota($idNota, $tipoMOV, $userId, $numeroNota) {
-    $stmt = $this->conn->prepare("INSERT INTO movimentacao (id_notaFiscal, tipoMovimento, dataMovimento, id_usuario) VALUES (:id_notaFiscal, :tipoMovimento, :dataMovimento, :id_usuario)");
+  public function lancarProduto($tipoMOV, $data, $userId, $idNota, $origemDestino) {
+    $stmt = $this->conn->prepare("INSERT INTO movimentacao (marca_item_mov, descricao_item_mov, quantidade_mov, medida_mov, origem_destino, id_notaFiscal, tipoMovimento, dataMovimento, id_usuario) VALUES (:marca_item_mov, :descricao_item_mov, :quantidade_mov, :medida_mov, :origem_destino, :id_notaFiscal, :tipoMovimento, :dataMovimento, :id_usuario)");
 
     $dataMovimento = date("Y-m-d");
 
+    $stmt->bindParam(":marca_item_mov", $data['marca_item']);
+    $stmt->bindParam(":descricao_item_mov", $data['descricao_item']);
+    $stmt->bindParam(":quantidade_mov", $data['quantidade']);
+    $stmt->bindParam(":medida_mov", $data['medida']);
+    $stmt->bindParam(":origem_destino", $origemDestino);
     $stmt->bindParam(":id_notaFiscal", $idNota);
     $stmt->bindParam(":tipoMovimento", $tipoMOV);
     $stmt->bindParam(":dataMovimento", $dataMovimento);
@@ -148,11 +151,9 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
     $stmt->execute();
 
-    $stmtUpdate = $this->conn->prepare("UPDATE notafiscal SET lancada = 1 WHERE idNota = :idNota AND numeroNota = :numeroNota AND id_usuario = :id_usuario");
+    $stmtUpdate = $this->conn->prepare("UPDATE notafiscal SET lancada = 1 WHERE idNota = :idNota");
 
     $stmtUpdate->bindParam(":idNota", $idNota);
-    $stmtUpdate->bindParam(":numeroNota", $numeroNota);
-    $stmtUpdate->bindParam(":id_usuario", $userId);
 
     $stmtUpdate->execute();
   }

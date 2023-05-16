@@ -39,17 +39,6 @@
 
                 <input class="input" id="origem" name="origem" required="required" type="text" placeholder="Origem ou destino"/>
 
-                <div class="radio-container">
-                    <input type="radio" id="entrada-radio" name="movi" value="Entrada"
-                            checked>
-                    <label for="entrada">Entrada</label>
-                </div>
-
-                <div class="radio-container">
-                    <input type="radio" id="saida-radio" name="movi" value="Saída">
-                    <label for="saida">Saída</label>
-                </div>
-
                 <input type="submit" id="submit-button"></input>
             </div>
             </form>

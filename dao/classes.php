@@ -44,7 +44,7 @@ class NotaFiscal {
   public $id;
   public $numero;
   public $lancada;
-  public $id_usuario;
+  public $tipoMOV;
   public $produtos;
 }
 
@@ -56,7 +56,7 @@ interface NotaFiscalDAOInterface {
   public function findNotaByNumero($numeroNota);
   public function findNotaById($idNota);
   public function findNotasDisponiveis();
-  public function lancarNota($idNota, $tipoMOV, $userId, $numeroNota);
+  public function lancarProduto($tipoMOV, $data, $userId, $idNota, $origemDestino);
   public function checarEstoque($marca, $descricao);
   public function buscarQuantidade($marca, $descricao);
 

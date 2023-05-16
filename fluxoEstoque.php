@@ -20,13 +20,15 @@
             <thead>
                 <tr>
                     <th>ID Movimento</th>
-                    <th>ID Produto</th>
                     <th>Marca</th>
                     <th>Descrição</th>
-                    <th>Tipo Movimento</th>
                     <th>Quantidade</th>
+                    <th>Medida</th>   
+                    <th>Origem/Destino</th>
+                    <th>Nota Fiscal</th>
+                    <th>Tipo de movimento</th>
                     <th>Data</th>
-                    <th>ID Usuario</th>
+                    <th>Lançado por:</th>
                 </tr>
                 <tr>
                     <th><input type="text" id="txtColuna1"/></th>
@@ -36,19 +38,24 @@
                     <th><input type="text" id="txtColuna5"/></th>
                     <th><input type="text" id="txtColuna6"/></th>
                     <th><input type="text" id="txtColuna7"/></th>
+                    <th><input type="text" id="txtColuna8"/></th>
+                    <th><input type="text" id="txtColuna9"/></th>
+                    <th><input type="text" id="txtColuna10"/></th>
                 </tr>            
             </thead>
             <tbody>
                 <?php foreach ($produtos as $dado): ?>
                     <tr>
                         <td><?= $dado['idMovimento'] ?></td> 
-                        <td><?= $dado['IDprod'] ?></td> 
-                        <td><?= $dado['marca'] ?></td> 
-                        <td><?= $dado['descricao'] ?></td> 
-                        <td><?= $dado['tipoMovimento'] ?></td>
-                        <td><?= $dado['quantidade'] ?></td>
-                        <td><?= $dado['dataFormatada'] ?></td>
-                        <td><?= $dado['id_usuario'] ?></td>
+                        <td><?= $dado['marca_item_mov'] ?></td> 
+                        <td><?= $dado['descricao_item_mov'] ?></td> 
+                        <td><?= $dado['quantidade_mov'] ?></td> 
+                        <td><?= $dado['medida_mov'] ?></td>
+                        <td><?= $dado['origem_destino'] ?></td>
+                        <td><?= $dado['numeroNota'] ?></td>
+                        <td><?= $dado['tipoMov'] ?></td>
+                        <td><?= $dado['dataMov'] ?></td>
+                        <td><?= $dado['username'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

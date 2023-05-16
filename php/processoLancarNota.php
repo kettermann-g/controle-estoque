@@ -22,47 +22,34 @@
   
   // pegando a nota recebida e o tipo de movimento
   $numeroNota = filter_input(INPUT_POST, "numero-nota");
+  $origemDestino = filter_input(INPUT_POST, "origem");
 
-  echo " $numeroNota <br>";
-  
-  $tipoMOV = filter_input(INPUT_POST, "movi");
 
-  echo " $tipoMOV <br>";
 
-  // find nota by numero
-  echo "<br>";
-  print_r($user); echo "<br><br>";
-  echo $user->id . "<br><br>";
+
   $findNota = $notaFiscalDAO->findNotaByNumero($numeroNota, true);
 
 
   // builda nota
-  if (isset($findNota['id_usuario'])) {
-    echo $findNota['id_usuario'] . "<br><br>";
-  }
   
-  if($findNota && $findNota['id_usuario'] === $user->id) {
+  if($findNota) {
     $nota = $notaFiscalDAO->buildNota($findNota);
-    echo "id do usuario da nota bate com o usuario da sessao hihi :3 xd <br><br>";
-
-    $nota = $notaFiscalDAO->buildNota($findNota);
-    print_r($nota); echo "<br><br>";
 
     // pra cada item, insert na tabela movimentacao com id da nota no objeto
-    print_r($nota->produtos); echo "<br><br>";
 
     // update lancada na tabela de notas
     // atualizar itens ou inserir no estoque geral
 
-    echo "<br><strong>ENTRANDO NO LOOP FOR EACH PRODUTO DO OBJETO NOTA</strong> <br><br>";
 
     foreach($nota->produtos as $produto) {
       $produtoExiste = $notaFiscalDAO->checarEstoque($produto['marca_item'], $produto['descricao_item']);
       
-      $notaFiscalDAO->movimentarProduto($tipoMOV, $produto, $produtoExiste, $user->id);
+      $notaFiscalDAO->movimentarProduto($nota->tipoMOV, $produto, $produtoExiste, $user->id);
+
+      $notaFiscalDAO->lancarProduto($nota->tipoMOV, $produto, $user->id, $nota->id, $origemDestino);
     }
 
-    $notaFiscalDAO->lancarNota($nota->id, $tipoMOV, $user->id, $nota->numero);
+    
 
 
 
