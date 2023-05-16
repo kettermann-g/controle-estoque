@@ -35,7 +35,7 @@ class Produto {
 interface ProdutoDAOInterface {
   public function buildProduto($data);
   public function findAll();
-  public function findFluxo($userId);
+  public function findFluxo();
 }
 
 //OBJETOS NOTA FISCAL

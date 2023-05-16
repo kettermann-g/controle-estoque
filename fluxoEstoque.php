@@ -6,7 +6,7 @@
 
   $produtoDAO = new ProdutoDAO($conexao);
   
-  $produtos = $produtoDAO->findFluxo($user->id);
+  $produtos = $produtoDAO->findFluxo();
 
   
 

@@ -27,12 +27,8 @@
       }
     }
 
-    public function findFluxo($userId) {
-      $stmt = $this->conn->prepare("SELECT idMovimento, movimentacao.id_notaFiscal as IDprod, estoque.marca as marca, estoque.descricao as descricao, tipoMovimento, movimentacao.quantidade, DATE_FORMAT(dataMovimento,'%d/%m/%Y') AS dataFormatada, movimentacao.id_usuario FROM movimentacao
-      inner join estoque on estoque.idProduto = movimentacao.estoque_idProduto
-                WHERE movimentacao.id_usuario = :id");
-
-      $stmt->bindParam(":id", $userId);
+    public function findFluxo() {
+      $stmt = $this->conn->prepare("SELECT idMovimento, movimentacao.id_notaFiscal as IDprod, estoque.marca as marca, estoque.descricao as descricao, tipoMovimento, movimentacao.quantidade, DATE_FORMAT(dataMovimento,'%d/%m/%Y') AS dataFormatada, movimentacao.id_usuario FROM movimentacao");
 
       $stmt->execute();
 
