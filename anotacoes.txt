@@ -7,7 +7,7 @@ salvar username em string no movimento
 --
 nota nao precisa de id de usuario
 sem filtro de usuario pra estoque fluxo e lancar nota
-sem filtro de user pra porra nenhuma na real
+sem filtro de user pra nada na real
 
 --
 
