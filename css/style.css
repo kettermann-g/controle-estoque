@@ -18,7 +18,7 @@ a {
     align-items: center;
     justify-content: space-between;
     max-width: 1440px;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     padding: 0px 15px;
     margin: 0 auto;
 }
