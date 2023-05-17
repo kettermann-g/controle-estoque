@@ -28,7 +28,7 @@
     }
 
     public function findFluxo() {
-      $stmt = $this->conn->prepare("SELECT idMovimento, marca_item_mov, descricao_item_mov, quantidade_mov, medida_mov, origem_destino, notafiscal.numeroNota as numeroNota, IF(tipoMovimento=1, 'Entrada', 'Saída') as tipoMov, DATE_FORMAT(dataMovimento,'%d/%m/%Y') as dataMov, usuario.username as username FROM movimentacao
+      $stmt = $this->conn->prepare("SELECT idMovimento, marca_item_mov, descricao_item_mov, quantidade_mov, medida_mov, origem_destino, notafiscal.numeroNota as numeroNota, IF(tipoMovimento=1, 'Entrada', 'Saída') as tipoMov, DATE_FORMAT(dataMovimento,'%d/%m/%Y %H:%i') as dataMov, usuario.username as username FROM movimentacao
       inner join notafiscal on notafiscal.idNota = movimentacao.id_notaFiscal
       inner join usuario on usuario.id = movimentacao.id_usuario order by idMovimento desc");
 

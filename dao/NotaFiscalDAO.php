@@ -137,7 +137,9 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
   public function lancarProduto($tipoMOV, $data, $userId, $idNota, $origemDestino) {
     $stmt = $this->conn->prepare("INSERT INTO movimentacao (marca_item_mov, descricao_item_mov, quantidade_mov, medida_mov, origem_destino, id_notaFiscal, tipoMovimento, dataMovimento, id_usuario) VALUES (:marca_item_mov, :descricao_item_mov, :quantidade_mov, :medida_mov, :origem_destino, :id_notaFiscal, :tipoMovimento, :dataMovimento, :id_usuario)");
 
-    $dataMovimento = date("Y-m-d");
+    date_default_timezone_set('America/Sao_Paulo');
+
+    $dataMovimento = date("Y-m-d H:i:s");
 
     $stmt->bindParam(":marca_item_mov", $data['marca_item']);
     $stmt->bindParam(":descricao_item_mov", $data['descricao_item']);
@@ -156,6 +158,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
     $stmtUpdate->bindParam(":idNota", $idNota);
 
     $stmtUpdate->execute();
+
+    header("Location: ../fluxoEstoque.php");
   }
 
   public function findNotaByNumero($numeroNota, $disponivel = false) {
