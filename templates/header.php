@@ -89,6 +89,40 @@
       <!-- SE ESTIVER -->
       <?php else: ?>
         <div class="div-condicional" id="div1">
+        
+          <!-- LINK INDEX/HOME -->
+          <a class="nav-link" href="<?= $BASE_URL ?>/index.php">
+            <li id="home" class="nav-item link-enabled">
+              <i id="cor0" class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </li>
+          </a>
+
+          <!-- LINK CADASTRO NEW -->
+          <a class="nav-link" href="<?= $BASE_URL ?>/movimentacao.php">
+            <li id="cadastro" class="nav-item link-enabled">
+              <i id="cor1" class="fa-solid fa-code-compare"></i>
+              <span>Movimentações</span>
+            </li>
+          </a>
+          
+          <a class="nav-link" href="<?= $BASE_URL ?>/estoque.php">
+            <li id="estoque" class="nav-item link-enabled">
+              <i id="cor4" class="fa-solid fa-database"></i>
+              <span>Estoque</span>
+            </li>
+          </a>
+
+          <a class="nav-link" href="<?= $BASE_URL ?>/fluxoEstoque.php">
+            <li id="fluxo" class="nav-item link-enabled">
+              <i id="cor4" class="fa-solid fa-rotate"></i>
+              <span>Fluxo de Estoque</span>
+            </li>
+          </a>
+          
+        </div>
+
+        <div class="div-condicional" id="div2">
           <li id="sair" class="link-enabled-danger" onclick="location.href='<?= $BASE_URL ?>/php/processoSair.php';">
             <i id="cor2" class="fa-solid fa-right-to-bracket"></i>
             <span>Sair</span>
@@ -98,39 +132,9 @@
             <i id ="cor5" class="fa-solid fa-user"></i>
             <span><?= $user->username ?></span>
           </li>
+
+          
         </div>
-
-        <div class="div-condicional" id="div2">
-          <!-- LINK INDEX/HOME -->
-          <a class="nav-link" href="<?= $BASE_URL ?>/index.php">
-            <li id="home" class="nav-item link-enabled">
-              <i id="cor0" class="fa-solid fa-house"></i>
-              <span>Home</span>
-            </li>
-          </a>
-
-      <!-- LINK CADASTRO NEW -->
-      <a class="nav-link" href="<?= $BASE_URL ?>/movimentacao.php">
-        <li id="cadastro" class="nav-item link-enabled">
-          <i id="cor1" class="fa-solid fa-code-compare"></i>
-          <span>Movimentações</span>
-        </li>
-      </a>
-      
-      <a class="nav-link" href="<?= $BASE_URL ?>/estoque.php">
-        <li id="estoque" class="nav-item link-enabled">
-          <i id="cor4" class="fa-solid fa-database"></i>
-          <span>Estoque</span>
-        </li>
-      </a>
-
-      <a class="nav-link" href="<?= $BASE_URL ?>/fluxoEstoque.php">
-        <li id="fluxo" class="nav-item link-enabled">
-          <i id="cor4" class="fa-solid fa-rotate"></i>
-          <span>Fluxo de Estoque</span>
-        </li>
-      </a>
-      </div>
       <!-- FIM IF -->
       <?php endif; ?>
         

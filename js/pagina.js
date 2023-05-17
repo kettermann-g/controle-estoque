@@ -21,7 +21,7 @@ const itens = document.querySelectorAll(".div-condicional");
 console.log(itens.length);
 
 if(itens.length === 1) {
-  container.style.justifyContent = "flex-end";
+  container.style.justifyContent = "flex-start";
   login.classList.remove("link-disabled");
   login.classList.add("link-enabled");
 }
