@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 16-Maio-2023 às 20:26
--- Versão do servidor: 5.7.40
--- versão do PHP: 8.2.0
+-- Host: 127.0.0.1:1360
+-- Tempo de geração: 18-Maio-2023 às 00:52
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,15 +29,13 @@ USE `projeto_integrador`;
 -- Estrutura da tabela `estoque`
 --
 
-DROP TABLE IF EXISTS `estoque`;
-CREATE TABLE IF NOT EXISTS `estoque` (
-  `idProduto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `estoque` (
+  `idProduto` int(11) UNSIGNED NOT NULL,
   `marca` varchar(80) DEFAULT NULL,
   `descricao` varchar(80) DEFAULT NULL,
   `medida` varchar(30) NOT NULL,
-  `quantidade` int(10) NOT NULL,
-  PRIMARY KEY (`idProduto`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `quantidade` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -67,17 +65,14 @@ INSERT INTO `estoque` (`idProduto`, `marca`, `descricao`, `medida`, `quantidade`
 -- Estrutura da tabela `itens_nota`
 --
 
-DROP TABLE IF EXISTS `itens_nota`;
-CREATE TABLE IF NOT EXISTS `itens_nota` (
-  `id_item` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `itens_nota` (
+  `id_item` int(11) NOT NULL,
   `marca_item` varchar(255) NOT NULL,
   `descricao_item` varchar(255) NOT NULL,
   `medida` varchar(255) NOT NULL,
   `quantidade` int(11) NOT NULL,
-  `id_nota` int(11) NOT NULL,
-  PRIMARY KEY (`id_item`),
-  KEY `id_nota` (`id_nota`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `id_nota` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `itens_nota`
@@ -94,9 +89,8 @@ INSERT INTO `itens_nota` (`id_item`, `marca_item`, `descricao_item`, `medida`, `
 -- Estrutura da tabela `movimentacao`
 --
 
-DROP TABLE IF EXISTS `movimentacao`;
-CREATE TABLE IF NOT EXISTS `movimentacao` (
-  `idMovimento` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `movimentacao` (
+  `idMovimento` int(11) NOT NULL,
   `marca_item_mov` varchar(255) NOT NULL,
   `descricao_item_mov` varchar(255) NOT NULL,
   `quantidade_mov` int(11) NOT NULL,
@@ -104,30 +98,9 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
   `origem_destino` varchar(255) NOT NULL,
   `id_notaFiscal` int(11) NOT NULL,
   `tipoMovimento` tinyint(1) NOT NULL,
-  `dataMovimento` date DEFAULT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`idMovimento`),
-  KEY `fk_notadfiscal_mov` (`id_notaFiscal`),
-  KEY `fk_id_usuario_mov` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `movimentacao`
---
-
-INSERT INTO `movimentacao` (`idMovimento`, `marca_item_mov`, `descricao_item_mov`, `quantidade_mov`, `medida_mov`, `origem_destino`, `id_notaFiscal`, `tipoMovimento`, `dataMovimento`, `id_usuario`) VALUES
-(9, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'fulano de tal', 1, 1, '2023-05-16', 1),
-(10, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'fulano de tal', 1, 1, '2023-05-16', 1),
-(11, 'HyperX', 'HyperX Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'fulano de tal', 1, 1, '2023-05-16', 1),
-(12, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'asdasd', 1, 1, '2023-05-16', 1),
-(13, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'asdasd', 1, 1, '2023-05-16', 1),
-(14, 'HyperX', 'HyperX Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'asdasd', 1, 1, '2023-05-16', 1),
-(15, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'edededed', 1, 1, '2023-05-16', 1),
-(16, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'edededed', 1, 1, '2023-05-16', 1),
-(17, 'HyperX', 'HyperX Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'edededed', 1, 1, '2023-05-16', 1),
-(18, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'eggege', 1, 1, '2023-05-16', 1),
-(19, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'eggege', 1, 1, '2023-05-16', 1),
-(20, 'HyperX', 'HyperX Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'eggege', 1, 1, '2023-05-16', 1);
+  `dataMovimento` datetime DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -135,14 +108,12 @@ INSERT INTO `movimentacao` (`idMovimento`, `marca_item_mov`, `descricao_item_mov
 -- Estrutura da tabela `notafiscal`
 --
 
-DROP TABLE IF EXISTS `notafiscal`;
-CREATE TABLE IF NOT EXISTS `notafiscal` (
-  `idNota` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `notafiscal` (
+  `idNota` int(11) NOT NULL,
   `tipoMov` tinyint(1) NOT NULL,
   `numeroNota` varchar(255) NOT NULL,
-  `lancada` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idNota`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  `lancada` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `notafiscal`
@@ -159,16 +130,14 @@ INSERT INTO `notafiscal` (`idNota`, `tipoMov`, `numeroNota`, `lancada`) VALUES
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
-  `cnpj` varchar(18) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `cnpj` varchar(18) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -178,6 +147,77 @@ INSERT INTO `usuario` (`id`, `username`, `nome`, `email`, `senha`, `cnpj`) VALUE
 (1, 'lucassantos', 'Lucas Santos', 'lucassantos@gmail.com', '$2y$10$LsQVmelMvQuBnNdZV7bJ/e.nkcvx/DHBV4M8q6Y5E31dVxFg/tjSu', 'XX.XX.XXX/0001-XX'),
 (2, 'joaosilva', 'Joao Silva', 'joaosilva@gmail.com', '$2y$10$A4tpqS3xSol8b11M8Bi9XORm.waEuLQAEkxKuRA6A7YklGto42m.m', 'XX.XX.XXX/0001-XX'),
 (4, 'gustavoramos', 'Gustavo Ramos', 'gustavoramos@gmail.com', '$2y$10$E1Hclb6j6XGhif4228gCJuTcX3pmA489ldoEqxVNG42P5.uxDcYv.', 'XX.XX.XXX/0001-XX');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `estoque`
+--
+ALTER TABLE `estoque`
+  ADD PRIMARY KEY (`idProduto`);
+
+--
+-- Índices para tabela `itens_nota`
+--
+ALTER TABLE `itens_nota`
+  ADD PRIMARY KEY (`id_item`),
+  ADD KEY `id_nota` (`id_nota`);
+
+--
+-- Índices para tabela `movimentacao`
+--
+ALTER TABLE `movimentacao`
+  ADD PRIMARY KEY (`idMovimento`),
+  ADD KEY `fk_notadfiscal_mov` (`id_notaFiscal`),
+  ADD KEY `fk_id_usuario_mov` (`id_usuario`);
+
+--
+-- Índices para tabela `notafiscal`
+--
+ALTER TABLE `notafiscal`
+  ADD PRIMARY KEY (`idNota`);
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `estoque`
+--
+ALTER TABLE `estoque`
+  MODIFY `idProduto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de tabela `itens_nota`
+--
+ALTER TABLE `itens_nota`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `movimentacao`
+--
+ALTER TABLE `movimentacao`
+  MODIFY `idMovimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT de tabela `notafiscal`
+--
+ALTER TABLE `notafiscal`
+  MODIFY `idNota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para despejos de tabelas
