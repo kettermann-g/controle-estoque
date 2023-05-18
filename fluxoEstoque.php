@@ -17,27 +17,39 @@
 ?>
 
 <style>
-  .content{
-    width: 1000px;
-    margin: 30px auto;
-  }
-  #tabela{
-  width:100%;
-  border:solid 1px;
-  text-align:center;
-  }
-  #tabela tbody tr{
-  border:solid 1px;
-  height:30px;
-  cursor:pointer;
-  text-align: center;
-  }
+    .content{
+      width: 1000px;
+      margin: 30px auto;
+    }
 
-  #tabela input{
-  color:navy;
-  width:100%;
-  }
+    #tabela{
+    width: 100%;
+    border: solid 1px;
+    text-align: center;
+    }
+
+    #tabela tbody tr{
+    border: solid 1px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    }
+
+    #tabela input{
+    color: navy;
+    width: 100%;
+    }
+
+    h2 {
+      margin: 15px 0px;
+    }
+
+    span {
+      color: #38B6FF;
+      font-weight: 500;
+    }
 </style>
+
   <main class="container">
 
 <div class="content">
@@ -46,7 +58,11 @@
     <?php if ($produtos): ?>
       <h1>FLUXO DE ESTOQUE</h1>
       <?php if(isset($_GET['username'])): ?>
-        <h2>Filtrado por: <?= $_GET['username'] ?></h2>
+        <h2>Filtrado por: 
+          <span>
+            <?= $_GET['username'] ?>
+          </span>
+        </h2>
       <?php endif; ?>
         <table id="tabela">
             <thead>
