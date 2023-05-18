@@ -6,11 +6,9 @@
 
   $produtoDAO = new ProdutoDAO($conexao);
   
-  if (!isset($_GET['username']) && !isset($_GET['id'])) {
-    $produtos = $produtoDAO->findFluxo();
-  } else {
-    $produtos = $produtoDAO->findFluxoByUser($_GET['username'], $_GET['id']);
-  }
+  (!isset($_GET['username']) && !isset($_GET['id'])) ?  $produtos = $produtoDAO->findFluxo() : $produtos = $produtoDAO->findFluxoByUser($_GET['username'], $_GET['id']);
+    
+    
   
   
 
