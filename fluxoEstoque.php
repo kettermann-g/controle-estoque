@@ -6,16 +6,48 @@
 
   $produtoDAO = new ProdutoDAO($conexao);
   
-  $produtos = $produtoDAO->findFluxo();
-
+  if (!isset($_GET['username']) && !isset($_GET['id'])) {
+    $produtos = $produtoDAO->findFluxo();
+  } else {
+    $produtos = $produtoDAO->findFluxoByUser($_GET['username'], $_GET['id']);
+  }
+  
   
 
 ?>
+
+<style>
+  .content{
+    width: 1000px;
+    margin: 30px auto;
+  }
+  #tabela{
+  width:100%;
+  border:solid 1px;
+  text-align:center;
+  }
+  #tabela tbody tr{
+  border:solid 1px;
+  height:30px;
+  cursor:pointer;
+  text-align: center;
+  }
+
+  #tabela input{
+  color:navy;
+  width:100%;
+  }
+</style>
   <main class="container">
 
 <div class="content">
-    <H1>FLUXO DE ESTOQUE</H1>
+    
     <br>
+    <?php if ($produtos): ?>
+      <h1>FLUXO DE ESTOQUE</h1>
+      <?php if(isset($_GET['username'])): ?>
+        <h2>Filtrado por: <?= $_GET['username'] ?></h2>
+      <?php endif; ?>
         <table id="tabela">
             <thead>
                 <tr>
@@ -55,11 +87,14 @@
                         <td><?= $dado['numeroNota'] ?></td>
                         <td><?= $dado['tipoMov'] ?></td>
                         <td><?= $dado['dataMov'] ?></td>
-                        <td><?= $dado['username'] ?></td>
+                        <td><a href="<?= $BASE_URL ?>/fluxoEstoque.php?username=<?= $dado['username'] ?>&id=<?= $dado['id_usuario'] ?>"><?= $dado['username'] ?></a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+      <?php else: ?>
+        <h1>Não há nenhum registro de fluxo de estoque.</h1>
+      <?php endif; ?>
     </div>
     
   </main>
