@@ -63,6 +63,7 @@
             <?= $_GET['username'] ?>
           </span>
         </h2>
+        <h3><a href="<?= $BASE_URL ?>/fluxoEstoque.php">Remover filtros</a></h3>
       <?php endif; ?>
         <table id="tabela">
             <thead>
