@@ -44,7 +44,7 @@
       margin: 15px 0px;
     }
 
-    span {
+    .username-filter-span {
       color: #38B6FF;
       font-weight: 500;
     }
@@ -59,7 +59,7 @@
       <h1>FLUXO DE ESTOQUE</h1>
       <?php if(isset($_GET['username'])): ?>
         <h2>Filtrado por: 
-          <span>
+          <span class="username-filter-span">
             <?= $_GET['username'] ?>
           </span>
         </h2>
