@@ -38,7 +38,6 @@ header {
   color: #38B6FF;
   padding: 0px 8px;
   text-transform: uppercase;
-  transition: 0.4s;
   cursor: pointer;
   font-size: 20px;
 }
@@ -53,7 +52,13 @@ header {
 }
 
 .link-enabled:hover, a:hover .link-enabled  {
+  transition: 0.4s;
   color: #000000;
+}
+
+.link-enabled:not(:hover), a:not(:hover) .link-enabled  {
+  transition: 0.4s;
+  color: #38B6FF;
 }
 
 .link-enabled-danger{

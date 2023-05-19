@@ -1,6 +1,7 @@
 const page = window.location.pathname;
 const home = document.getElementById("home");
 const login = document.getElementById("login");
+const itens = document.querySelectorAll(".div-condicional");
 console.log(page);
 if(page != "/controle-estoque/") {
   var navLinks = document.querySelectorAll('.nav-link').forEach(link => {
@@ -16,7 +17,7 @@ if(page != "/controle-estoque/") {
 }
 
 const container = document.querySelector("#ul-header");
-const itens = document.querySelectorAll(".div-condicional");
+
 
 console.log(itens.length);
 
