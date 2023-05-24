@@ -47,6 +47,7 @@
   
   <script src="https://kit.fontawesome.com/5fda86d671.js" crossorigin="anonymous"></script>
   <script src="<?= $BASE_URL ?>/js/index.js"></script>
+  <script src="<?= $BASE_URL ?>/js/validationCadastro.js"></script>
 
 </body>
 </html>
