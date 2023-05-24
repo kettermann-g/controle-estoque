@@ -64,17 +64,24 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
 
   }
 
+  // funcao usada em foreach(array de produtos da nota fiscal)
+  //
+  // tipo mov: entrada / saida já determinado na nota fiscal que
+  // vem do banco e guardado no objeto da nota
+  //
+  // data: array associativo contendo as inforamações do produto
+  //
+  // bool existe: utilizar funcao checar estoque para determinar
+  // valor da variavel
+  //
+  // userId: propriedade id do objeto usuario da sessao
   public function movimentarProduto($tipoMOV, $data, bool $existe, $userId) {
     $marca = $data['marca_item'];
     $descricao = $data['descricao_item'];
     
-    //recebe tipo de movimentaçao (saida, entrada)
-    //declara querys
-
-    //TERMINAR QUERY
-    // parametro tipo mov:
-    // entrada é 1 (true (booleano do banco de dados))
-    if($tipoMOV === 1 && !$existe) {
+    $ENTRADA = $tipoMOV === 1;
+    $SAIDA  = $tipoMOV === 0;
+    if($ENTRADA && !$existe) {
       $qnt = $data['quantidade'];
       $medida = $data['medida'];
 
@@ -88,10 +95,8 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmt->execute();
 
 
-    } else if($tipoMOV === 1 && $existe) {
+    } else if($ENTRADA && $existe) {
       
-      //ATUALIZANDO ESTOQUE
-      //AUMENTANDO QUANTIDADE NO ESTOQUE
       $res = $this->buscarQuantidade($marca, $descricao);
 
       $qnt = $res['quantidade'];
@@ -110,7 +115,7 @@ class NotaFiscalDAO implements NotaFiscalDAOInterface {
       $stmtAumentaQuantidade->execute();
 
 
-    } else if ($tipoMOV === 0 && $existe) {
+    } else if ($SAIDA && $existe) {
       // BUSCANDO QUANTIDADE
       $res = $this->buscarQuantidade($marca, $descricao);
 

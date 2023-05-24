@@ -38,7 +38,7 @@ interface ProdutoDAOInterface {
   public function findFluxo();
 }
 
-//OBJETOS NOTA FISCAL
+// OBJETOS NOTA FISCAL
 
 class NotaFiscal {
   public $id;
