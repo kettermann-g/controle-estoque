@@ -157,3 +157,11 @@ input {
 .aviso {
     color: red;
 }
+
+.senhas-coincidem {
+    color: green;
+}
+
+.senhas-nao-coincidem {
+    color: red;
+}
