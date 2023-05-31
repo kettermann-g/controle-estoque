@@ -153,3 +153,7 @@ input {
     background: #c0c0c0;
     border: 1px solid #c0c0c0;
 }
+
+.aviso {
+    color: red;
+}

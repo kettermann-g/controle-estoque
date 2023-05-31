@@ -1,8 +1,6 @@
 <?php
   include_once("php/conexao.php");
   include_once("php/url.php");
-
-  
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +34,12 @@
           <div class="input-field">
             <input id="senha" name="senha" type="password" required="required" placeholder="Senha">
           </div>
+          <?php 
+            if(isset($_SESSION['mensagem'])) {
+            echo '<p class="aviso id="aviso">'. $_SESSION['mensagem'] .'</p>';
+            unset($_SESSION['mensagem']);
+          }
+          ?>
           <button class="button-right" id="button-right" type="submit">Entrar</button>
         </form>
       </div>
