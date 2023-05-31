@@ -57,8 +57,8 @@
         </div>
 
         <div>
-          <p id="conf-senha-texto" class="senhas-nao-coincidem"><i id="id-i-senha-igual" class="fa-solid fa-circle-xmark"></i> As senhas precisam ser iguais</p>
           <p id="caracteres-senha" class="senhas-nao-coincidem"><i id="id-i-senha-caracteres" class="fa-solid fa-circle-xmark"></i> A senha precisa ter 8 caracteres ou mais</p>
+          <p id="conf-senha-texto" class="senhas-nao-coincidem"><i id="id-i-senha-igual" class="fa-solid fa-circle-xmark"></i> As senhas precisam ser iguais</p>
         </div>
 
         <div class="input-field">
@@ -67,7 +67,7 @@
         </div>
 
 
-        <button class="button-right button-cadastrar" id="button-right" type="submit">Cadastrar</button>
+        <input class="button-right button-cadastrar" id="button-right" type="submit" value="cadastrar" disabled>
       </form>
     </div>
   </div>
