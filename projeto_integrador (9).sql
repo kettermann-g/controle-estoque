@@ -118,11 +118,11 @@ CREATE TABLE IF NOT EXISTS `movimentacao` (
 --
 
 INSERT INTO `movimentacao` (`idMovimento`, `marca_item_mov`, `descricao_item_mov`, `quantidade_mov`, `medida_mov`, `origem_destino`, `id_notaFiscal`, `tipoMovimento`, `dataMovimento`, `id_usuario`) VALUES
-(27, 'Apple', 'Celular iPhone 14 Preto', 3, 'Unitário', 'loja njo centro', 3, 0, '2023-05-17 22:26:07', 1),
-(28, 'Razer', 'Headset Kraken Verde', 12, 'Unitário', 'loja njo centro', 3, 0, '2023-05-17 22:26:07', 1),
-(29, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'loja no kephas', 1, 1, '2023-05-17 22:27:40', 5),
-(30, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'loja no kephas', 1, 1, '2023-05-17 22:27:40', 5),
-(31, 'HyperX', 'HyperX Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'loja no kephas', 1, 1, '2023-05-17 22:27:40', 5);
+(27, 'Apple', 'Celular iPhone 14 Preto', 3, 'Unitário', 'Venda', 3, 0, '2023-05-17 22:26:07', 1),
+(28, 'Razer', 'Headset Kraken Verde', 12, 'Unitário', 'Venda', 3, 0, '2023-05-17 22:26:07', 1),
+(29, 'Samsung', 'Celular Galaxy 30 Branco', 10, 'Unitário', 'Compra', 1, 1, '2023-05-17 22:27:40', 5),
+(30, 'Razer', 'Headset Kraken Verde', 6, 'Unitário', 'Compra', 1, 1, '2023-05-17 22:27:40', 5),
+(31, 'HyperX', 'Cloud II KHX-HSCP Vermelho', 10, 'Unitário', 'Compra', 1, 1, '2023-05-17 22:27:40', 5);
 
 -- --------------------------------------------------------
 

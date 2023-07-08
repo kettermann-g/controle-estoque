@@ -13,22 +13,6 @@
 
           
     <main class="container">
-          <table>
-            <thead>
-              <tr>
-                <th>Suas Notas:</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php if($allNotas): ?>
-              <?php foreach($allNotas as $nota): ?>
-                <tr><td><?= $nota['numeroNota'] ?></td></tr>
-              <?php endforeach; ?>
-              <?php else: ?>
-                <tr><td>Nenhuma nota disponível</td></tr>
-              <?php endif; ?>
-            </tbody>
-          </table>
     
         <div class="container-form" id="container-form">
           
@@ -43,6 +27,23 @@
             </div>
             </form>
         </div>
+
+        <table class = "table_pendentes">
+            <thead>
+              <tr>
+                <th>Notas pendentes:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if($allNotas): ?>
+              <?php foreach($allNotas as $nota): ?>
+                <tr><td><?= $nota['numeroNota'] ?>;</td></tr>
+              <?php endforeach; ?>
+              <?php else: ?>
+                <tr><td>Nenhuma nota disponível</td></tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
     </main>
 
     <?php include_once("templates/footer.php"); ?>

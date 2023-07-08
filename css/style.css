@@ -23,6 +23,14 @@ a {
     margin: 0 auto;
 }
 
+.table_pendentes{
+    margin-top: 10px;
+}
+
+.table_pendentes tr{
+    display: inline-block;
+}
+
 .div-welcome {
     width: 550px;
     font-size: 18px;
